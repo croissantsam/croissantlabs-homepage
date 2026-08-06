@@ -139,7 +139,7 @@ const dictionaries = {
         {
           key: "email",
           title: "Email direct",
-          value: "bonjour@croissantlabs.dev",
+          value: "samuel@croissantlabs.com",
           body: "Pour une première prise de contact, un brief, ou une question simple.",
         },
         {
@@ -327,7 +327,7 @@ const dictionaries = {
         {
           key: "email",
           title: "Direct email",
-          value: "hello@croissantlabs.dev",
+          value: "samuel@croissantlabs.com",
           body: "Best for a first note, a brief, or a focused question.",
         },
         {

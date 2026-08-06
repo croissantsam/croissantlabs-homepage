@@ -54,7 +54,9 @@ export const Header = () => {
           <Croissant className="h-5 w-5" />
         </div>
         <div className="flex min-w-0 flex-col justify-center leading-tight">
-          <div className="font-display truncate text-base">CroissantLabs</div>
+          <div className="font-display text-lg font-semibold uppercase tracking-[0.18em] text-foreground truncate leading-none">
+            CroissantLabs
+          </div>
           <div className="text-muted-foreground truncate text-[10px]">
             {messages.sidebar.studioLocation}
           </div>

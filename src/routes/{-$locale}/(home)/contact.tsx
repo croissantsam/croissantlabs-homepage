@@ -33,7 +33,15 @@ function RouteComponent() {
         {messages.contactPage.channels.map((channel) => (
           <article key={channel.key} className="glass-tint rounded-2xl p-5">
             <div className="text-muted-foreground text-xs uppercase">{channel.title}</div>
-            <div className="font-display mt-2 text-xl">{channel.value}</div>
+            <div className="font-display mt-2 text-xl">
+              {channel.key === "email" ? (
+                <a className="text-inherit underline-offset-4 hover:underline" href={`mailto:${channel.value}`}>
+                  {channel.value}
+                </a>
+              ) : (
+                channel.value
+              )}
+            </div>
             <p className="text-muted-foreground mt-2 text-sm leading-6">{channel.body}</p>
           </article>
         ))}

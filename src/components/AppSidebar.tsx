@@ -40,6 +40,15 @@ const appTints = {
   provence: "oklch(0.65 0.16 40)",
 } as const;
 
+const appLinks: Record<string, string> = {
+  pastryvital: "https://pastryvital.vercel.app",
+  calanque: "https://calanque.vercel.app",
+  olivier: "https://olivier.vercel.app",
+  safran: "https://safran.vercel.app",
+  cigale: "https://cigale.vercel.app",
+  provence: "https://provence.vercel.app",
+};
+
 export function AppSidebar() {
   const { locale, messages } = useI18n();
   const navItems = getNavItems(locale);
@@ -117,10 +126,14 @@ export function AppSidebar() {
                   {apps.slice(0, 4).map((app) => {
                     const Icon = appIcons[app.id as keyof typeof appIcons] ?? Sparkles;
                     const tint = appTints[app.id as keyof typeof appTints] ?? "var(--terracotta)";
+                    const href = appLinks[app.id] ?? "#";
 
                     return (
-                      <button
+                      <a
                         key={app.id}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-muted-foreground hover:text-foreground flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition hover:bg-white/30"
                       >
                         <span
@@ -130,7 +143,7 @@ export function AppSidebar() {
                           <Icon className="h-3.5 w-3.5" />
                         </span>
                         {app.name}
-                      </button>
+                      </a>
                     );
                   })}
                 </div>
