@@ -1,5 +1,5 @@
 import { Link, useLocation, useMatches } from "@tanstack/react-router";
-import { Bell, Command, Croissant, Languages, Search } from "lucide-react";
+import { Bell, Command, Croissant, Languages } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,12 +8,10 @@ import {
   BreadcrumbSeparator,
 } from "@/ui/components/breadcrumb";
 import { SidebarTrigger } from "@/ui/components/sidebar";
-import { useState } from "react";
 import { ModeToggle } from "./mode-toggle";
 import { replaceLocaleInPathname, supportedLocales, useI18n } from "@/utils/i18n";
 
 export const Header = () => {
-  const [query, setQuery] = useState("");
   const location = useLocation();
   const { locale, messages } = useI18n();
   const nextLocale = locale.startsWith("fr") ? "en" : "fr";
@@ -63,20 +61,7 @@ export const Header = () => {
         </div>
       </div>
 
-      <div className="ml-auto hidden max-w-md flex-1 items-center gap-2 md:flex">
-        <div className="glass-tint md:none flex w-full items-center gap-2 rounded-xl px-3 py-2">
-          <Search className="text-muted-foreground h-4 w-4" />
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={messages.header.searchPlaceholder}
-            className="placeholder:text-muted-foreground flex-1 bg-transparent text-sm outline-none"
-          />
-          <kbd className="text-muted-foreground flex items-center gap-0.5 rounded border border-white/70 bg-white/60 px-1.5 py-0.5 text-[10px]">
-            <Command className="h-2.5 w-2.5" /> K
-          </kbd>
-        </div>
-      </div>
+      <div className="ml-auto hidden max-w-md flex-1 items-center gap-2 md:flex" />
 
       <div className="items-center gap-1 rounded-xl p-1">
         <a
