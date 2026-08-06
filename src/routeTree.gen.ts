@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as Char123LocaleChar125homeRouteRouteImport } from './routes/{-$locale}/(home)/route'
 import { Route as Char123LocaleChar125homeIndexRouteImport } from './routes/{-$locale}/(home)/index'
 import { Route as Char123LocaleChar125homeAppsRouteImport } from './routes/{-$locale}/(home)/apps'
 import { Route as Char123LocaleChar125homeContactRouteImport } from './routes/{-$locale}/(home)/contact'
 import { Route as Char123LocaleChar125homeExploreRouteImport } from './routes/{-$locale}/(home)/explore'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const Char123LocaleChar125homeRouteRoute =
   Char123LocaleChar125homeRouteRouteImport.update({
     id: '/{-$locale}/(home)',
@@ -47,6 +53,7 @@ const Char123LocaleChar125homeExploreRoute =
   } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/{-$locale}': typeof Char123LocaleChar125homeRouteRouteWithChildren
   '/{-$locale}/apps': typeof Char123LocaleChar125homeAppsRoute
   '/{-$locale}/contact': typeof Char123LocaleChar125homeContactRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/': typeof Char123LocaleChar125homeIndexRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/{-$locale}/apps': typeof Char123LocaleChar125homeAppsRoute
   '/{-$locale}/contact': typeof Char123LocaleChar125homeContactRoute
   '/{-$locale}/explore': typeof Char123LocaleChar125homeExploreRoute
@@ -61,6 +69,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/{-$locale}/(home)': typeof Char123LocaleChar125homeRouteRouteWithChildren
   '/{-$locale}/(home)/apps': typeof Char123LocaleChar125homeAppsRoute
   '/{-$locale}/(home)/contact': typeof Char123LocaleChar125homeContactRoute
@@ -70,6 +79,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/{-$locale}'
     | '/{-$locale}/apps'
     | '/{-$locale}/contact'
@@ -77,12 +87,14 @@ export interface FileRouteTypes {
     | '/{-$locale}/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/{-$locale}/apps'
     | '/{-$locale}/contact'
     | '/{-$locale}/explore'
     | '/{-$locale}'
   id:
     | '__root__'
+    | '/'
     | '/{-$locale}/(home)'
     | '/{-$locale}/(home)/apps'
     | '/{-$locale}/(home)/contact'
@@ -91,11 +103,19 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   Char123LocaleChar125homeRouteRoute: typeof Char123LocaleChar125homeRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/{-$locale}/(home)': {
       id: '/{-$locale}/(home)'
       path: '/{-$locale}'
@@ -155,6 +175,7 @@ const Char123LocaleChar125homeRouteRouteWithChildren =
   )
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   Char123LocaleChar125homeRouteRoute:
     Char123LocaleChar125homeRouteRouteWithChildren,
 }

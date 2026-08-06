@@ -401,8 +401,50 @@ type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
+const defaultLocale: Locale = "fr";
+
+function resolveLocaleFromString(locale?: string): Locale | undefined {
+  if (!locale) return undefined;
+
+  const normalized = locale.toLowerCase();
+
+  if (supportedLocales.includes(normalized as Locale)) {
+    return normalized as Locale;
+  }
+
+  const baseLocale = normalized.split("-")[0];
+
+  if (supportedLocales.includes(baseLocale as Locale)) {
+    return baseLocale as Locale;
+  }
+
+  return undefined;
+}
+
+export function getPreferredLocale(): Locale {
+  if (typeof navigator === "undefined") {
+    return defaultLocale;
+  }
+
+  const candidates = [
+    ...(navigator.languages ?? []),
+    navigator.language,
+  ]
+    .filter(Boolean)
+    .map((locale) => locale.toLowerCase());
+
+  for (const candidate of candidates) {
+    const resolved = resolveLocaleFromString(candidate);
+    if (resolved) {
+      return resolved;
+    }
+  }
+
+  return defaultLocale;
+}
+
 export function resolveLocale(locale?: string): Locale {
-  return supportedLocales.includes(locale as Locale) ? (locale as Locale) : "fr";
+  return resolveLocaleFromString(locale) ?? defaultLocale;
 }
 
 export function getMessages(locale?: string) {
