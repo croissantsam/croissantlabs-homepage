@@ -54,7 +54,7 @@ export const Header = () => {
           <Croissant className="h-5 w-5" />
         </div>
         <div className="flex min-w-0 flex-col justify-center leading-tight">
-          <div className="font-display text-lg font-semibold uppercase tracking-[0.18em] text-foreground truncate leading-none">
+          <div className="text-lg font-semibold text-foreground truncate ">
             CroissantLabs
           </div>
           <div className="text-muted-foreground truncate text-[10px]">
@@ -75,16 +75,6 @@ export const Header = () => {
           <span className="uppercase">{locale.startsWith("fr") ? "FR" : "EN"}</span>
         </a>
       </div>
-      <button
-        aria-label={messages.header.notifications}
-        className="glass-tint relative flex h-10 w-10 items-center justify-center rounded-xl transition hover:scale-105"
-      >
-        <Bell className="h-4 w-4" />
-        <span
-          className="absolute top-2 right-2 h-2 w-2 rounded-full"
-          style={{ background: "var(--terracotta)" }}
-        />
-      </button>
     </header>
   );
 };
