@@ -35,7 +35,10 @@ function RouteComponent() {
             <div className="text-muted-foreground text-xs uppercase">{channel.title}</div>
             <div className="font-display mt-2 text-xl">
               {channel.key === "email" ? (
-                <a className="text-inherit underline-offset-4 hover:underline" href={`mailto:${channel.value}`}>
+                <a
+                  className="text-inherit underline-offset-4 hover:underline"
+                  href={`mailto:${channel.value}`}
+                >
                   {channel.value}
                 </a>
               ) : (

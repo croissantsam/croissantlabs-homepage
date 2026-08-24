@@ -426,10 +426,7 @@ export function getPreferredLocale(): Locale {
     return defaultLocale;
   }
 
-  const candidates = [
-    ...(navigator.languages ?? []),
-    navigator.language,
-  ]
+  const candidates = [...(navigator.languages ?? []), navigator.language]
     .filter(Boolean)
     .map((locale) => locale.toLowerCase());
 
