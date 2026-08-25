@@ -18,7 +18,7 @@ import {
 
 const appIcons = {
   pastryvital: Heart,
-  calanque: Waves,
+  "llama.script": Waves,
   olivier: TreePalm,
   safran: Camera,
   cigale: Music4,
@@ -27,7 +27,7 @@ const appIcons = {
 
 const appTints = {
   pastryvital: "oklch(0.65 0.13 220)",
-  calanque: "oklch(0.62 0.13 200)",
+  "llama.script": "oklch(0.62 0.13 200)",
   olivier: "oklch(0.58 0.10 130)",
   safran: "oklch(0.72 0.16 60)",
   cigale: "oklch(0.68 0.14 300)",

@@ -187,9 +187,9 @@ const dictionaries = {
         status: "live",
       },
       {
-        id: "calanque",
-        name: "Calanque",
-        tagline: "Carnet de voyage collaboratif",
+        id: "llama.script",
+        name: "Llama Script",
+        tagline: "Native TypeScript LLM engine",
         users: "12k",
         status: "live",
       },
