@@ -15,6 +15,7 @@ import { Route as Char123LocaleChar125homeIndexRouteImport } from './routes/{-$l
 import { Route as Char123LocaleChar125homeAppsRouteImport } from './routes/{-$locale}/(home)/apps'
 import { Route as Char123LocaleChar125homeContactRouteImport } from './routes/{-$locale}/(home)/contact'
 import { Route as Char123LocaleChar125homeExploreRouteImport } from './routes/{-$locale}/(home)/explore'
+import { Route as Char123LocaleChar125homeStackRouteImport } from './routes/{-$locale}/(home)/stack'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -51,6 +52,12 @@ const Char123LocaleChar125homeExploreRoute =
     path: '/explore',
     getParentRoute: () => Char123LocaleChar125homeRouteRoute,
   } as any)
+const Char123LocaleChar125homeStackRoute =
+  Char123LocaleChar125homeStackRouteImport.update({
+    id: '/stack',
+    path: '/stack',
+    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/apps': typeof Char123LocaleChar125homeAppsRoute
   '/{-$locale}/contact': typeof Char123LocaleChar125homeContactRoute
   '/{-$locale}/explore': typeof Char123LocaleChar125homeExploreRoute
+  '/{-$locale}/stack': typeof Char123LocaleChar125homeStackRoute
   '/{-$locale}/': typeof Char123LocaleChar125homeIndexRoute
 }
 export interface FileRoutesByTo {
@@ -65,6 +73,7 @@ export interface FileRoutesByTo {
   '/{-$locale}/apps': typeof Char123LocaleChar125homeAppsRoute
   '/{-$locale}/contact': typeof Char123LocaleChar125homeContactRoute
   '/{-$locale}/explore': typeof Char123LocaleChar125homeExploreRoute
+  '/{-$locale}/stack': typeof Char123LocaleChar125homeStackRoute
   '/{-$locale}': typeof Char123LocaleChar125homeIndexRoute
 }
 export interface FileRoutesById {
@@ -74,6 +83,7 @@ export interface FileRoutesById {
   '/{-$locale}/(home)/apps': typeof Char123LocaleChar125homeAppsRoute
   '/{-$locale}/(home)/contact': typeof Char123LocaleChar125homeContactRoute
   '/{-$locale}/(home)/explore': typeof Char123LocaleChar125homeExploreRoute
+  '/{-$locale}/(home)/stack': typeof Char123LocaleChar125homeStackRoute
   '/{-$locale}/(home)/': typeof Char123LocaleChar125homeIndexRoute
 }
 export interface FileRouteTypes {
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/apps'
     | '/{-$locale}/contact'
     | '/{-$locale}/explore'
+    | '/{-$locale}/stack'
     | '/{-$locale}/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -91,6 +102,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/apps'
     | '/{-$locale}/contact'
     | '/{-$locale}/explore'
+    | '/{-$locale}/stack'
     | '/{-$locale}'
   id:
     | '__root__'
@@ -99,6 +111,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/(home)/apps'
     | '/{-$locale}/(home)/contact'
     | '/{-$locale}/(home)/explore'
+    | '/{-$locale}/(home)/stack'
     | '/{-$locale}/(home)/'
   fileRoutesById: FileRoutesById
 }
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125homeExploreRouteImport
       parentRoute: typeof Char123LocaleChar125homeRouteRoute
     }
+    '/{-$locale}/(home)/stack': {
+      id: '/{-$locale}/(home)/stack'
+      path: '/stack'
+      fullPath: '/{-$locale}/stack'
+      preLoaderRoute: typeof Char123LocaleChar125homeStackRouteImport
+      parentRoute: typeof Char123LocaleChar125homeRouteRoute
+    }
   }
 }
 
@@ -158,6 +178,7 @@ interface Char123LocaleChar125homeRouteRouteChildren {
   Char123LocaleChar125homeAppsRoute: typeof Char123LocaleChar125homeAppsRoute
   Char123LocaleChar125homeContactRoute: typeof Char123LocaleChar125homeContactRoute
   Char123LocaleChar125homeExploreRoute: typeof Char123LocaleChar125homeExploreRoute
+  Char123LocaleChar125homeStackRoute: typeof Char123LocaleChar125homeStackRoute
   Char123LocaleChar125homeIndexRoute: typeof Char123LocaleChar125homeIndexRoute
 }
 
@@ -166,6 +187,7 @@ const Char123LocaleChar125homeRouteRouteChildren: Char123LocaleChar125homeRouteR
     Char123LocaleChar125homeAppsRoute: Char123LocaleChar125homeAppsRoute,
     Char123LocaleChar125homeContactRoute: Char123LocaleChar125homeContactRoute,
     Char123LocaleChar125homeExploreRoute: Char123LocaleChar125homeExploreRoute,
+    Char123LocaleChar125homeStackRoute: Char123LocaleChar125homeStackRoute,
     Char123LocaleChar125homeIndexRoute: Char123LocaleChar125homeIndexRoute,
   }
 

@@ -22,6 +22,7 @@ const dictionaries = {
       overview: "Vue d'ensemble",
       apps: "Nos apps",
       explore: "Explorer",
+      stack: "Stack",
       contact: "Contact",
     },
     header: {
@@ -157,6 +158,26 @@ const dictionaries = {
       ],
       cta: "Écrire à l'équipe",
     },
+    stackPage: {
+      metaTitle: "CroissantLabs — Stack technique",
+      metaDescription: "Découvrez la stack technique utilisée pour construire CroissantLabs.",
+      title: "Comment on construit CroissantLabs",
+      framework: {
+        title: "Framework",
+        description:
+          "CroissantLabs est construit sur TanStack Start, un framework full-stack React moderne qui combine le meilleur du client et du serveur.",
+      },
+      styling: {
+        title: "Styling & UI",
+        description:
+          "Une approche utility-first avec Tailwind CSS v4, complétée par des composants accessibles de shadcn/ui et Base UI.",
+      },
+      i18n: {
+        title: "Internationalisation",
+        description:
+          "Support bilingue FR/EN avec un système de locales personnalisé intégré au routeur.",
+      },
+    },
     apps: [
       {
         id: "pastryvital",
@@ -210,6 +231,7 @@ const dictionaries = {
       overview: "Overview",
       apps: "Apps",
       explore: "Explore",
+      stack: "Stack",
       contact: "Contact",
     },
     header: {
@@ -344,6 +366,26 @@ const dictionaries = {
         },
       ],
       cta: "Email the team",
+    },
+    stackPage: {
+      metaTitle: "CroissantLabs — Tech Stack",
+      metaDescription: "Discover the technology stack used to build CroissantLabs.",
+      title: "How we build CroissantLabs",
+      framework: {
+        title: "Framework",
+        description:
+          "CroissantLabs is built on TanStack Start, a modern full-stack React framework that combines the best of client and server.",
+      },
+      styling: {
+        title: "Styling & UI",
+        description:
+          "A utility-first approach with Tailwind CSS v4, complemented by accessible components from shadcn/ui and Base UI.",
+      },
+      i18n: {
+        title: "Internationalization",
+        description:
+          "Bilingual FR/EN support with a custom locale system integrated into the router.",
+      },
     },
     apps: [
       {
