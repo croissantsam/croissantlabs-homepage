@@ -1,4 +1,5 @@
 import { queryOptions, useQuery } from "@tanstack/react-query";
+import { createServerFn } from "@tanstack/react-start";
 
 export type GitHubActivityItem = {
   repo: string;
@@ -41,18 +42,21 @@ export function formatTimeAgo(dateString: string, locale: "fr" | "en" = "fr"): s
   return locale === "fr" ? `${diffMonths} mois` : `${diffMonths}mo ago`;
 }
 
-const GITHUB_HEADERS: HeadersInit = {
-  Accept: "application/vnd.github.v3+json",
-  "User-Agent": "CroissantLabs-Web",
-};
+// In-memory cache on the server to prevent GitHub rate-limiting
+let cachedActivities: { timestamp: number; items: GitHubActivityItem[] } | null = null;
+const CACHE_TTL_MS = 1000 * 60 * 10; // 10 minutes
 
-async function fetchRepoActivity(repo: string, team: string): Promise<GitHubActivityItem | null> {
+async function fetchRepoActivity(
+  repo: string,
+  team: string,
+  headers: Record<string, string>,
+): Promise<GitHubActivityItem | null> {
   const candidates: GitHubActivityItem[] = [];
 
   try {
     // 1. Fetch latest commits on default branch
     const commitsRes = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=1`, {
-      headers: GITHUB_HEADERS,
+      headers,
     });
 
     if (commitsRes.ok) {
@@ -74,14 +78,14 @@ async function fetchRepoActivity(repo: string, team: string): Promise<GitHubActi
         });
       }
     }
-  } catch (error) {
-    console.warn(`[GitHub Activity] Failed to fetch commits for ${repo}:`, error);
+  } catch {
+    // Gracefully ignore network / rate-limiting errors
   }
 
   try {
     // 2. Check latest release
     const releaseRes = await fetch(`https://api.github.com/repos/${repo}/releases/latest`, {
-      headers: GITHUB_HEADERS,
+      headers,
     });
 
     if (releaseRes.ok) {
@@ -98,13 +102,13 @@ async function fetchRepoActivity(repo: string, team: string): Promise<GitHubActi
       }
     }
   } catch {
-    // ignore release errors
+    // Gracefully ignore release errors
   }
 
   try {
     // 3. Try public repo events
     const eventsRes = await fetch(`https://api.github.com/repos/${repo}/events?per_page=5`, {
-      headers: GITHUB_HEADERS,
+      headers,
     });
 
     if (eventsRes.ok) {
@@ -137,7 +141,7 @@ async function fetchRepoActivity(repo: string, team: string): Promise<GitHubActi
       }
     }
   } catch {
-    // ignore events error
+    // Gracefully ignore events error
   }
 
   if (candidates.length === 0) {
@@ -149,22 +153,49 @@ async function fetchRepoActivity(repo: string, team: string): Promise<GitHubActi
   return candidates[0];
 }
 
-export async function getLatestGitHubActivities(): Promise<GitHubActivityItem[]> {
+export const getLatestGitHubActivities = createServerFn({
+  method: "GET",
+}).handler(async (): Promise<GitHubActivityItem[]> => {
+  if (cachedActivities && Date.now() - cachedActivities.timestamp < CACHE_TTL_MS) {
+    return cachedActivities.items;
+  }
+
+  const token =
+    typeof process !== "undefined"
+      ? process.env?.GITHUB_TOKEN || process.env?.VITE_GITHUB_TOKEN
+      : undefined;
+
+  const headers: Record<string, string> = {
+    Accept: "application/vnd.github.v3+json",
+    "User-Agent": "CroissantLabs-Web",
+  };
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
   try {
     const results = await Promise.all(
-      TRACKED_REPOS.map(({ repo, team }) => fetchRepoActivity(repo, team)),
+      TRACKED_REPOS.map(({ repo, team }) => fetchRepoActivity(repo, team, headers)),
     );
-    return results.filter((item): item is GitHubActivityItem => Boolean(item));
-  } catch (error) {
-    console.warn("[GitHub Activity] Error fetching activities:", error);
-    return [];
+    const items = results.filter((item): item is GitHubActivityItem => Boolean(item));
+
+    if (items.length > 0) {
+      cachedActivities = { timestamp: Date.now(), items };
+      return items;
+    }
+
+    // If fetch returned empty due to rate limit, return previous cache if available
+    return cachedActivities?.items ?? [];
+  } catch {
+    return cachedActivities?.items ?? [];
   }
-}
+});
 
 export const githubActivitiesQueryOptions = () =>
   queryOptions({
     queryKey: ["github-activities"],
-    queryFn: getLatestGitHubActivities,
+    queryFn: () => getLatestGitHubActivities(),
     staleTime: 1000 * 60 * 5, // 5 minutes
     refetchInterval: 1000 * 60 * 5, // 5 minutes
   });
