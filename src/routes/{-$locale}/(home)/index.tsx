@@ -113,6 +113,24 @@ function Landing() {
     });
   };
 
+  const latestActivityAgo = activityList[0]?.ago;
+
+  const liveStatus = useMemo(() => {
+    if (!latestActivityAgo) {
+      return `${messages.home.liveStatusPrefix} ${locale === "fr" ? "récemment" : "recently"}`;
+    }
+
+    if (locale === "fr") {
+      const timeStr =
+        latestActivityAgo.startsWith("à l'instant") || latestActivityAgo === "hier"
+          ? latestActivityAgo
+          : `il y a ${latestActivityAgo}`;
+      return `${messages.home.liveStatusPrefix} ${timeStr}`;
+    }
+
+    return `${messages.home.liveStatusPrefix} ${latestActivityAgo}`;
+  }, [latestActivityAgo, messages.home.liveStatusPrefix, locale]);
+
   return (
     <>
       <section className="grid grid-cols-1 gap-5 lg:grid-cols-3">
@@ -123,7 +141,7 @@ function Landing() {
                 className="h-2 w-2 animate-pulse rounded-full"
                 style={{ background: "var(--olive)" }}
               />
-              <span className="text-muted-foreground">{messages.home.liveStatus}</span>
+              <span className="text-muted-foreground">{liveStatus}</span>
             </div>
 
             <h1 className="font-display mt-4 max-w-2xl text-3xl leading-[1.05] sm:text-4xl md:text-5xl lg:text-5xl">

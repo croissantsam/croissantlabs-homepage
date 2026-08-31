@@ -51,7 +51,7 @@ const dictionaries = {
       metaDescription:
         "CroissantLabs conçoit des apps et sites web pour des équipes ambitieuses. Découvrez la suite dans un tableau de bord vivant.",
       ogDescription: "Un studio, plusieurs produits. Entrez dans le dashboard de CroissantLabs.",
-      liveStatus: "7 produits & boilerplates · mise à jour il y a 3 min",
+      liveStatusPrefix: "7 produits & boilerplates · mis à jour",
       titleStart: "Un studio produit qui conçoit",
       titleAccent: "des apps qu'on aime ouvrir.",
       intro:
@@ -60,14 +60,29 @@ const dictionaries = {
       secondaryCta: "Parler à l'équipe",
       stats: [
         {
-          key: "active-users",
-          value: "97k",
-          label: "utilisateurs actifs",
+          key: "products",
+          value: "7+",
+          label: "produits & boilerplates",
+          color: "var(--terracotta)",
+        },
+        {
+          key: "platforms",
+          value: "Multi",
+          label: "Web, Mobile & Desktop",
           color: "var(--mediterranean)",
         },
-        { key: "products", value: "7", label: "produits & templates", color: "var(--terracotta)" },
-        { key: "team", value: "18", label: "artisans du code", color: "var(--olive)" },
-        { key: "rating", value: "4.9", label: "★ sur les stores", color: "var(--ochre)" },
+        {
+          key: "craft",
+          value: "100%",
+          label: "sur-mesure & craft",
+          color: "var(--olive)",
+        },
+        {
+          key: "delivery",
+          value: "Full",
+          label: "du concept à la prod",
+          color: "var(--ochre)",
+        },
       ],
       appsTitle: "Nos apps",
       appsSubtitle: "Cliquez pour prévisualiser — impossible de casser quoi que ce soit.",
@@ -109,9 +124,9 @@ const dictionaries = {
       intro:
         "Chaque produit garde la même exigence : utile, chaleureux et soigné. Voici la version condensée de notre portefeuille.",
       highlights: [
-        { key: "ship", value: "3", label: "lancements ce trimestre" },
-        { key: "active", value: "97k", label: "personnes actives chaque mois" },
-        { key: "nps", value: "68", label: "NPS moyen sur la suite" },
+        { key: "ship", value: "7+", label: "produits & templates" },
+        { key: "platforms", value: "Multi", label: "Web, iOS, Android & Desktop" },
+        { key: "craft", value: "100%", label: "design soigné & code propre" },
       ],
       sectionTitle: "Produits vedettes",
       sectionBody: "Une sélection des apps les plus visitées du studio.",
@@ -279,7 +294,7 @@ const dictionaries = {
       metaDescription:
         "CroissantLabs designs apps and websites for ambitious teams. Explore the product suite inside a lively dashboard.",
       ogDescription: "One studio, several products. Step into the CroissantLabs dashboard.",
-      liveStatus: "7 products & templates live · updated 3 min ago",
+      liveStatusPrefix: "7 products & templates live · updated",
       titleStart: "A product studio building",
       titleAccent: "apps people love opening.",
       intro:
@@ -287,15 +302,30 @@ const dictionaries = {
       primaryCta: "Explore the suite",
       secondaryCta: "Talk to the team",
       stats: [
-        { key: "active-users", value: "97k", label: "active users", color: "var(--mediterranean)" },
         {
           key: "products",
-          value: "7",
-          label: "products & templates",
+          value: "7+",
+          label: "products & boilerplates",
           color: "var(--terracotta)",
         },
-        { key: "team", value: "18", label: "craft-minded builders", color: "var(--olive)" },
-        { key: "rating", value: "4.9", label: "★ store rating", color: "var(--ochre)" },
+        {
+          key: "platforms",
+          value: "Multi",
+          label: "Web, Mobile & Desktop",
+          color: "var(--mediterranean)",
+        },
+        {
+          key: "craft",
+          value: "100%",
+          label: "bespoke craft & UX",
+          color: "var(--olive)",
+        },
+        {
+          key: "delivery",
+          value: "Full",
+          label: "concept to production",
+          color: "var(--ochre)",
+        },
       ],
       appsTitle: "Featured apps",
       appsSubtitle: "Click any card for a quick preview — this view is safe to explore.",
@@ -337,9 +367,9 @@ const dictionaries = {
       intro:
         "Every product shares the same point of view: useful, approachable, and well crafted. Here is the compact view of the portfolio.",
       highlights: [
-        { key: "ship", value: "3", label: "launches this quarter" },
-        { key: "active", value: "97k", label: "people active every month" },
-        { key: "nps", value: "68", label: "average suite NPS" },
+        { key: "ship", value: "7+", label: "products & boilerplates" },
+        { key: "platforms", value: "Multi", label: "Web, iOS, Android & Desktop" },
+        { key: "craft", value: "100%", label: "bespoke design & clean code" },
       ],
       sectionTitle: "Flagship products",
       sectionBody: "A selection of the most visited products in the studio.",
