@@ -1,5 +1,5 @@
 import { Link, useLocation, useMatches } from "@tanstack/react-router";
-import { Bell, Command, Croissant, Languages } from "lucide-react";
+import { Croissant, Languages } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,8 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@/ui/components/breadcrumb";
 import { SidebarTrigger } from "@/ui/components/sidebar";
-import { ModeToggle } from "./mode-toggle";
-import { replaceLocaleInPathname, supportedLocales, useI18n } from "@/utils/i18n";
+import { replaceLocaleInPathname, useI18n } from "@/utils/i18n";
 
 export const Header = () => {
   const location = useLocation();

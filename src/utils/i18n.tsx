@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useMemo } from "react";
 export const supportedLocales = ["fr", "en"] as const;
 
 export type Locale = (typeof supportedLocales)[number];
-export type AppStatus = "live" | "beta" | "soon";
+export type AppStatus = "live" | "beta" | "soon" | "boilerplate";
 
 type AppCopy = {
   id: string;
@@ -43,6 +43,7 @@ const dictionaries = {
         live: "Live",
         beta: "Beta",
         soon: "Bientôt",
+        boilerplate: "Boilerplate",
       },
     },
     home: {
@@ -50,7 +51,7 @@ const dictionaries = {
       metaDescription:
         "CroissantLabs conçoit des apps et sites web pour des équipes ambitieuses. Découvrez la suite dans un tableau de bord vivant.",
       ogDescription: "Un studio, plusieurs produits. Entrez dans le dashboard de CroissantLabs.",
-      liveStatus: "6 produits en ligne · mise à jour il y a 3 min",
+      liveStatus: "7 produits & boilerplates · mise à jour il y a 3 min",
       titleStart: "Un studio produit qui conçoit",
       titleAccent: "des apps qu'on aime ouvrir.",
       intro:
@@ -64,7 +65,7 @@ const dictionaries = {
           label: "utilisateurs actifs",
           color: "var(--mediterranean)",
         },
-        { key: "products", value: "6", label: "produits en prod", color: "var(--terracotta)" },
+        { key: "products", value: "7", label: "produits & templates", color: "var(--terracotta)" },
         { key: "team", value: "18", label: "artisans du code", color: "var(--olive)" },
         { key: "rating", value: "4.9", label: "★ sur les stores", color: "var(--ochre)" },
       ],
@@ -187,11 +188,18 @@ const dictionaries = {
         status: "live",
       },
       {
-        id: "llama.script",
-        name: "Llama Script",
-        tagline: "Native TypeScript LLM engine",
-        users: "12k",
-        status: "live",
+        id: "llama.scriptc",
+        name: "llama.scriptc",
+        tagline: "Moteur d'inférence LLM natif TypeScript & ScriptC",
+        users: "GitHub",
+        status: "boilerplate",
+      },
+      {
+        id: "croissant-electron",
+        name: "croissant-electron",
+        tagline: "Boilerplate Electron, React, TS & TanStack Router",
+        users: "GitHub",
+        status: "boilerplate",
       },
       {
         id: "olivier",
@@ -252,6 +260,7 @@ const dictionaries = {
         live: "Live",
         beta: "Beta",
         soon: "Soon",
+        boilerplate: "Boilerplate",
       },
     },
     home: {
@@ -259,7 +268,7 @@ const dictionaries = {
       metaDescription:
         "CroissantLabs designs apps and websites for ambitious teams. Explore the product suite inside a lively dashboard.",
       ogDescription: "One studio, several products. Step into the CroissantLabs dashboard.",
-      liveStatus: "6 products live · updated 3 min ago",
+      liveStatus: "7 products & templates live · updated 3 min ago",
       titleStart: "A product studio building",
       titleAccent: "apps people love opening.",
       intro:
@@ -270,8 +279,8 @@ const dictionaries = {
         { key: "active-users", value: "97k", label: "active users", color: "var(--mediterranean)" },
         {
           key: "products",
-          value: "6",
-          label: "products in production",
+          value: "7",
+          label: "products & templates",
           color: "var(--terracotta)",
         },
         { key: "team", value: "18", label: "craft-minded builders", color: "var(--olive)" },
@@ -396,11 +405,18 @@ const dictionaries = {
         status: "live",
       },
       {
-        id: "calanque",
-        name: "Calanque",
-        tagline: "Collaborative travel journal",
-        users: "12k",
-        status: "live",
+        id: "llama.scriptc",
+        name: "llama.scriptc",
+        tagline: "Native Transformer LLM engine in TypeScript & ScriptC",
+        users: "GitHub",
+        status: "boilerplate",
+      },
+      {
+        id: "croissant-electron",
+        name: "croissant-electron",
+        tagline: "Modern boilerplate for Electron, React, TS & TanStack Router",
+        users: "GitHub",
+        status: "boilerplate",
       },
       {
         id: "olivier",

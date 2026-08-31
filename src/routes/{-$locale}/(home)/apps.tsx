@@ -1,5 +1,7 @@
+import { getAppIcon, getAppLink, getAppTint } from "@/utils/apps";
 import { getAppItems, getMessages, useI18n } from "@/utils/i18n";
 import { createFileRoute } from "@tanstack/react-router";
+import { ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/{-$locale}/(home)/apps")({
   head: ({ params }) => {
@@ -45,22 +47,69 @@ function RouteComponent() {
       </div>
 
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
-        {apps.map((app) => (
-          <article key={app.id} className="glass-tint rounded-2xl p-5">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <h3 className="font-display text-lg">{app.name}</h3>
-                <p className="text-muted-foreground mt-1 text-sm">{app.tagline}</p>
+        {apps.map((app) => {
+          const Icon = getAppIcon(app.id);
+          const tint = getAppTint(app.id);
+          const href = getAppLink(app.id);
+
+          return (
+            <a
+              key={app.id}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-tint group flex flex-col justify-between rounded-2xl p-5 transition hover:scale-[1.01]"
+              style={{
+                ["--app-tint" as string]: tint,
+              }}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white shadow-md"
+                    style={{ background: tint }}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg transition-colors">{app.name}</h3>
+                    <p className="text-muted-foreground text-sm">{app.tagline}</p>
+                  </div>
+                </div>
+                <span
+                  className="shrink-0 rounded-full px-2 py-0.5 text-[11px]"
+                  style={{
+                    background:
+                      app.status === "live"
+                        ? "oklch(0.85 0.1 130 / 0.5)"
+                        : app.status === "beta"
+                          ? "oklch(0.85 0.12 75 / 0.5)"
+                          : app.status === "boilerplate"
+                            ? "oklch(0.85 0.12 235 / 0.5)"
+                            : "oklch(0.85 0.05 300 / 0.5)",
+                  }}
+                >
+                  {messages.common.statuses[app.status]}
+                </span>
               </div>
-              <span className="rounded-full bg-white/70 px-2 py-1 text-[11px]">
-                {messages.common.statuses[app.status]}
-              </span>
-            </div>
-            <div className="text-muted-foreground mt-4 text-xs">
-              {app.users} {messages.common.users}
-            </div>
-          </article>
-        ))}
+              <div className="text-muted-foreground mt-4 flex items-center justify-between text-xs">
+                <span>
+                  {app.status === "boilerplate"
+                    ? "GitHub Starter"
+                    : `${app.users} ${messages.common.users}`}
+                </span>
+                <span className="flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+                  {app.status === "boilerplate"
+                    ? locale === "fr"
+                      ? "Voir sur GitHub"
+                      : "View on GitHub"
+                    : messages.common.openDemo}
+                  <ExternalLink className="h-3 w-3" />
+                </span>
+              </div>
+            </a>
+          );
+        })}
       </div>
     </section>
   );

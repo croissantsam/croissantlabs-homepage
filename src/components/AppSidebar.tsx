@@ -1,3 +1,4 @@
+import { getAppIcon, getAppLink, getAppTint } from "@/utils/apps";
 import { getAppItems, useI18n } from "@/utils/i18n";
 import { getNavItems } from "@/utils/routes";
 import { Link } from "@tanstack/react-router";
@@ -10,44 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/ui/components/sidebar";
-import {
-  Camera,
-  ChevronRight,
-  Croissant,
-  Heart,
-  Music4,
-  Palette,
-  Sparkles,
-  TreePalm,
-  Waves,
-} from "lucide-react";
-
-const appIcons = {
-  pastryvital: Heart,
-  "llama.script": Waves,
-  olivier: TreePalm,
-  safran: Camera,
-  cigale: Music4,
-  provence: Palette,
-} as const;
-
-const appTints = {
-  pastryvital: "oklch(0.65 0.13 220)",
-  "llama.script": "oklch(0.62 0.13 200)",
-  olivier: "oklch(0.58 0.10 130)",
-  safran: "oklch(0.72 0.16 60)",
-  cigale: "oklch(0.68 0.14 300)",
-  provence: "oklch(0.65 0.16 40)",
-} as const;
-
-const appLinks: Record<string, string> = {
-  pastryvital: "https://pastryvital.vercel.app",
-  "llama.script": "https://llamascript.vercel.app",
-  olivier: "https://olivier.vercel.app",
-  safran: "https://safran.vercel.app",
-  cigale: "https://cigale.vercel.app",
-  provence: "https://provence.vercel.app",
-};
+import { ChevronRight, Croissant } from "lucide-react";
 
 export function AppSidebar() {
   const { locale, messages } = useI18n();
@@ -123,10 +87,10 @@ export function AppSidebar() {
                   {messages.sidebar.suiteLabel}
                 </div>
                 <div className="flex flex-col gap-1">
-                  {apps.slice(0, 4).map((app) => {
-                    const Icon = appIcons[app.id as keyof typeof appIcons] ?? Sparkles;
-                    const tint = appTints[app.id as keyof typeof appTints] ?? "var(--terracotta)";
-                    const href = appLinks[app.id] ?? "#";
+                  {apps.map((app) => {
+                    const Icon = getAppIcon(app.id);
+                    const tint = getAppTint(app.id);
+                    const href = getAppLink(app.id);
 
                     return (
                       <a
@@ -142,7 +106,7 @@ export function AppSidebar() {
                         >
                           <Icon className="h-3.5 w-3.5" />
                         </span>
-                        {app.name}
+                        <span className="truncate">{app.name}</span>
                       </a>
                     );
                   })}

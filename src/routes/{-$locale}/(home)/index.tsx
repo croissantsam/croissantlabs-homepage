@@ -1,38 +1,8 @@
+import { getAppIcon, getAppLink, getAppTint } from "@/utils/apps";
 import { getAppItems, getMessages, useI18n } from "@/utils/i18n";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import {
-  Camera,
-  ChevronRight,
-  Heart,
-  Music4,
-  Palette,
-  Pause,
-  Play,
-  Plus,
-  Sparkles,
-  Star,
-  TreePalm,
-  Waves,
-} from "lucide-react";
-
-const appIcons = {
-  pastryvital: Heart,
-  "llama.script": Waves,
-  olivier: TreePalm,
-  safran: Camera,
-  cigale: Music4,
-  provence: Palette,
-} as const;
-
-const appTints = {
-  pastryvital: "oklch(0.65 0.13 220)",
-  "llama.script": "oklch(0.62 0.13 200)",
-  olivier: "oklch(0.58 0.10 130)",
-  safran: "oklch(0.72 0.16 60)",
-  cigale: "oklch(0.68 0.14 300)",
-  provence: "oklch(0.65 0.16 40)",
-} as const;
+import { ChevronRight, Heart, Music4, Pause, Play, Plus, Star } from "lucide-react";
 
 export const Route = createFileRoute("/{-$locale}/(home)/")({
   head: ({ params }) => {
@@ -153,10 +123,10 @@ function Landing() {
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {apps.map((item) => {
-              const Icon = appIcons[item.id as keyof typeof appIcons] ?? Sparkles;
+              const Icon = getAppIcon(item.id);
               const isSelected = item.id === selectedApp;
               const isLiked = liked.has(item.id);
-              const tint = appTints[item.id as keyof typeof appTints] ?? "var(--terracotta)";
+              const tint = getAppTint(item.id);
 
               return (
                 <button
@@ -205,7 +175,9 @@ function Landing() {
                               ? "oklch(0.85 0.1 130 / 0.5)"
                               : item.status === "beta"
                                 ? "oklch(0.85 0.12 75 / 0.5)"
-                                : "oklch(0.85 0.05 300 / 0.5)",
+                                : item.status === "boilerplate"
+                                  ? "oklch(0.85 0.12 235 / 0.5)"
+                                  : "oklch(0.85 0.05 300 / 0.5)",
                         }}
                       >
                         {messages.common.statuses[item.status]}
@@ -213,7 +185,9 @@ function Landing() {
                     </div>
                     <div className="text-muted-foreground mt-1 text-xs">{item.tagline}</div>
                     <div className="text-muted-foreground mt-3 text-[11px]">
-                      {item.users} {messages.common.users}
+                      {item.status === "boilerplate"
+                        ? "GitHub Starter"
+                        : `${item.users} ${messages.common.users}`}
                     </div>
                   </div>
                 </button>
@@ -226,9 +200,8 @@ function Landing() {
           <div
             className="app-focus relative overflow-hidden rounded-3xl p-5"
             style={{
-              ["--app-tint" as string]:
-                appTints[app.id as keyof typeof appTints] ?? "var(--terracotta)",
-              boxShadow: `0 20px 60px -20px ${appTints[app.id as keyof typeof appTints] ?? "var(--terracotta)"}`,
+              ["--app-tint" as string]: getAppTint(app.id),
+              boxShadow: `0 20px 60px -20px ${getAppTint(app.id)}`,
             }}
           >
             <div className="text-muted-foreground text-[10px] tracking-widest uppercase">
@@ -238,11 +211,11 @@ function Landing() {
               <div
                 className="flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-lg"
                 style={{
-                  background: appTints[app.id as keyof typeof appTints] ?? "var(--terracotta)",
+                  background: getAppTint(app.id),
                 }}
               >
                 {(() => {
-                  const Icon = appIcons[app.id as keyof typeof appIcons] ?? Sparkles;
+                  const Icon = getAppIcon(app.id);
 
                   return <Icon className="h-6 w-6" />;
                 })()}
@@ -254,21 +227,50 @@ function Landing() {
             </div>
 
             <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-              {[
-                { key: "mau", label: "MAU", value: app.users },
-                { key: "rating", label: "Rating", value: "4.9" },
-                { key: "version", label: "v", value: "2.4" },
-              ].map((stat) => (
-                <div key={stat.key} className="glass-tint rounded-xl py-2">
-                  <div className="font-display">{stat.value}</div>
-                  <div className="text-muted-foreground text-[10px]">{stat.label}</div>
-                </div>
-              ))}
+              {app.status === "boilerplate"
+                ? [
+                    { key: "repo", label: "Repo", value: "GitHub" },
+                    {
+                      key: "type",
+                      label: "Type",
+                      value: app.id === "llama.scriptc" ? "Engine" : "Starter",
+                    },
+                    {
+                      key: "version",
+                      label: "Stack",
+                      value: app.id === "llama.scriptc" ? "ScriptC" : "Electron",
+                    },
+                  ].map((stat) => (
+                    <div key={stat.key} className="glass-tint rounded-xl py-2">
+                      <div className="font-display text-sm">{stat.value}</div>
+                      <div className="text-muted-foreground text-[10px]">{stat.label}</div>
+                    </div>
+                  ))
+                : [
+                    { key: "mau", label: "MAU", value: app.users },
+                    { key: "rating", label: "Rating", value: "4.9" },
+                    { key: "version", label: "v", value: "2.4" },
+                  ].map((stat) => (
+                    <div key={stat.key} className="glass-tint rounded-xl py-2">
+                      <div className="font-display">{stat.value}</div>
+                      <div className="text-muted-foreground text-[10px]">{stat.label}</div>
+                    </div>
+                  ))}
             </div>
 
-            <button className="glass-tint mt-4 flex w-full items-center justify-center gap-1.5 rounded-xl py-2 text-sm font-medium transition hover:scale-[1.01]">
-              {messages.common.openDemo} <ChevronRight className="h-3.5 w-3.5" />
-            </button>
+            <a
+              href={getAppLink(app.id)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-tint mt-4 flex w-full items-center justify-center gap-1.5 rounded-xl py-2 text-sm font-medium transition hover:scale-[1.01]"
+            >
+              {app.status === "boilerplate"
+                ? locale === "fr"
+                  ? "Voir sur GitHub"
+                  : "View on GitHub"
+                : messages.common.openDemo}{" "}
+              <ChevronRight className="h-3.5 w-3.5" />
+            </a>
           </div>
 
           <div className="glass rounded-3xl p-5">
