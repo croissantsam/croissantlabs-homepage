@@ -2,11 +2,11 @@ import { getAppIcon, getAppLink, getAppTint } from "@/utils/apps";
 import {
   formatTimeAgo,
   getLatestGitHubActivities,
-  type GitHubActivityItem,
+  useGitHubActivities,
 } from "@/utils/github-activity";
 import { getAppItems, getMessages, useI18n } from "@/utils/i18n";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ArrowRight,
   ChevronRight,
@@ -56,17 +56,8 @@ function Landing() {
   const [selectedApp, setSelectedApp] = useState<string>("pastryvital");
   const [liked, setLiked] = useState<Set<string>>(new Set(["safran"]));
   const [playing, setPlaying] = useState(false);
-  const [gitHubActivities, setGitHubActivities] = useState<GitHubActivityItem[]>(
-    loaderData?.activities ?? [],
-  );
 
-  useEffect(() => {
-    getLatestGitHubActivities().then((items) => {
-      if (items.length > 0) {
-        setGitHubActivities(items);
-      }
-    });
-  }, []);
+  const { data: gitHubActivities = [] } = useGitHubActivities(loaderData?.activities);
 
   const activityList = useMemo(() => {
     const defaultList = messages.home.activity;
@@ -215,13 +206,14 @@ function Landing() {
             <ul className="mt-4 flex flex-col gap-2">
               {activityList.slice(0, 5).map((row) => {
                 const tint = getAppTint(row.team);
-                const isClickable = Boolean(row.url);
+                const rowUrl = "url" in row ? (row.url as string | undefined) : undefined;
+                const isClickable = Boolean(rowUrl);
                 const Tag = isClickable ? "a" : "li";
 
                 return (
                   <Tag
                     key={row.team + row.message}
-                    href={row.url}
+                    href={rowUrl}
                     target={isClickable ? "_blank" : undefined}
                     rel={isClickable ? "noopener noreferrer" : undefined}
                     className="glass-tint group flex cursor-pointer items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-xs transition hover:scale-[1.005] sm:text-sm"

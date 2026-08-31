@@ -1,3 +1,5 @@
+import { queryOptions, useQuery } from "@tanstack/react-query";
+
 export type GitHubActivityItem = {
   repo: string;
   team: string;
@@ -157,4 +159,19 @@ export async function getLatestGitHubActivities(): Promise<GitHubActivityItem[]>
     console.warn("[GitHub Activity] Error fetching activities:", error);
     return [];
   }
+}
+
+export const githubActivitiesQueryOptions = () =>
+  queryOptions({
+    queryKey: ["github-activities"],
+    queryFn: getLatestGitHubActivities,
+    staleTime: 1000 * 60 * 5, // 5 minutes
+    refetchInterval: 1000 * 60 * 5, // 5 minutes
+  });
+
+export function useGitHubActivities(initialData?: GitHubActivityItem[]) {
+  return useQuery({
+    ...githubActivitiesQueryOptions(),
+    initialData: initialData && initialData.length > 0 ? initialData : undefined,
+  });
 }
