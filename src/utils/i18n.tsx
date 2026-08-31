@@ -94,11 +94,11 @@ const dictionaries = {
         { team: "Olivier", message: "3 nouveaux ateliers connectés", ago: "1 h" },
         { team: "PastryVital", message: "note transcrite → tâche « rappeler Léa »", ago: "2 h" },
       ],
-      jobsLabel: "On recrute",
-      jobsTitle: "Envie de construire des produits utiles ?",
-      jobsBody:
-        "On cherche un·e designer produit et deux devs full-stack pour rejoindre l'équipe produit.",
-      jobsCta: "Voir les postes",
+      servicesLabel: "Services & Studio",
+      servicesTitle: "Vous avez un projet d'application ?",
+      servicesBody:
+        "CroissantLabs conçoit et développe des applications web, mobile et desktop sur-mesure pour des équipes exigeantes. Parlons de votre idée.",
+      servicesCta: "Démarrer un projet",
       footer: "© CroissantLabs — conçu et développé en France",
     },
     appsPage: {
@@ -322,11 +322,11 @@ const dictionaries = {
         { team: "Olivier", message: "connected 3 new workshops", ago: "1 h" },
         { team: "PastryVital", message: "transcribed note → task “call Lea back”", ago: "2 h" },
       ],
-      jobsLabel: "We're hiring",
-      jobsTitle: "Want to build useful products?",
-      jobsBody:
-        "We're looking for a product designer and two full-stack developers to join the product team.",
-      jobsCta: "See open roles",
+      servicesLabel: "Services & Engineering",
+      servicesTitle: "Looking to build a custom application?",
+      servicesBody:
+        "CroissantLabs designs and engineers tailored web, mobile, and desktop applications for ambitious teams. Let's discuss your project.",
+      servicesCta: "Start a project",
       footer: "© CroissantLabs — designed and built in France",
     },
     appsPage: {

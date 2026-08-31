@@ -5,9 +5,18 @@ import {
   type GitHubActivityItem,
 } from "@/utils/github-activity";
 import { getAppItems, getMessages, useI18n } from "@/utils/i18n";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { ChevronRight, ExternalLink, Heart, Music4, Pause, Play, Plus, Star } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronRight,
+  ExternalLink,
+  Heart,
+  Music4,
+  Pause,
+  Play,
+  Star,
+} from "lucide-react";
 
 export const Route = createFileRoute("/{-$locale}/(home)/")({
   loader: async () => {
@@ -106,56 +115,113 @@ function Landing() {
 
   return (
     <>
-      <section className="glass hero-panel relative overflow-hidden rounded-3xl p-8 md:p-10">
-        <div className="flex items-center gap-2 text-xs">
-          <span
-            className="h-2 w-2 animate-pulse rounded-full"
-            style={{ background: "var(--olive)" }}
-          />
-          <span className="text-muted-foreground">{messages.home.liveStatus}</span>
-        </div>
-
-        <h1 className="font-display mt-4 max-w-3xl text-4xl leading-[1.02] md:text-6xl">
-          {messages.home.titleStart}{" "}
-          <span
-            style={{
-              background: "linear-gradient(90deg, var(--terracotta), var(--sunset), var(--ochre))",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              color: "transparent",
-            }}
-          >
-            {messages.home.titleAccent}
-          </span>
-        </h1>
-
-        <p className="text-muted-foreground mt-4 max-w-xl">{messages.home.intro}</p>
-
-        <div className="mt-6 flex flex-wrap gap-2">
-          <button
-            className="text-primary-foreground rounded-xl px-5 py-2.5 text-sm font-medium shadow-lg transition hover:scale-[1.02]"
-            style={{
-              background: "linear-gradient(135deg, var(--terracotta), var(--sunset))",
-            }}
-          >
-            {messages.home.primaryCta}
-          </button>
-          <button className="glass-tint rounded-xl px-5 py-2.5 text-sm font-medium transition hover:scale-[1.02]">
-            {messages.home.secondaryCta}
-          </button>
-        </div>
-
-        <div className="mt-8 grid max-w-3xl grid-cols-2 gap-3 md:grid-cols-4">
-          {messages.home.stats.map((stat) => (
-            <div
-              key={stat.key}
-              className="glass-tint rounded-2xl p-4"
-              style={{ ["--tw-glass-tint" as string]: stat.color }}
-            >
-              <div className="font-display text-2xl">{stat.value}</div>
-              <div className="text-muted-foreground mt-1 text-xs">{stat.label}</div>
+      <section className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+        <div className="glass hero-panel relative flex flex-col justify-between overflow-hidden rounded-3xl p-8 md:p-10 lg:col-span-2">
+          <div>
+            <div className="flex items-center gap-2 text-xs">
+              <span
+                className="h-2 w-2 animate-pulse rounded-full"
+                style={{ background: "var(--olive)" }}
+              />
+              <span className="text-muted-foreground">{messages.home.liveStatus}</span>
             </div>
-          ))}
+
+            <h1 className="font-display mt-4 max-w-2xl text-3xl leading-[1.05] sm:text-4xl md:text-5xl lg:text-5xl">
+              {messages.home.titleStart}{" "}
+              <span
+                style={{
+                  background:
+                    "linear-gradient(90deg, var(--terracotta), var(--sunset), var(--ochre))",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                {messages.home.titleAccent}
+              </span>
+            </h1>
+
+            <p className="text-muted-foreground mt-4 max-w-xl text-sm leading-relaxed md:text-base">
+              {messages.home.intro}
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              <button
+                className="text-primary-foreground rounded-xl px-5 py-2.5 text-sm font-medium shadow-lg transition hover:scale-[1.02]"
+                style={{
+                  background: "linear-gradient(135deg, var(--terracotta), var(--sunset))",
+                }}
+              >
+                {messages.home.primaryCta}
+              </button>
+              <button className="glass-tint rounded-xl px-5 py-2.5 text-sm font-medium transition hover:scale-[1.02]">
+                {messages.home.secondaryCta}
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {messages.home.stats.map((stat) => (
+              <div
+                key={stat.key}
+                className="glass-tint rounded-2xl p-3.5"
+                style={{ ["--tw-glass-tint" as string]: stat.color }}
+              >
+                <div className="font-display text-xl sm:text-2xl">{stat.value}</div>
+                <div className="text-muted-foreground mt-0.5 text-xs">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="glass flex flex-col justify-between rounded-3xl p-6 lg:col-span-1">
+          <div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div
+                  className="flex h-8 w-8 items-center justify-center rounded-lg text-white"
+                  style={{
+                    background: "linear-gradient(135deg, var(--olive), var(--mediterranean))",
+                  }}
+                >
+                  <Star className="h-4 w-4" />
+                </div>
+                <h3 className="font-display text-lg">{messages.home.recentTitle}</h3>
+              </div>
+              <span
+                className="h-2 w-2 animate-pulse rounded-full"
+                style={{ background: "var(--terracotta)" }}
+              />
+            </div>
+
+            <ul className="mt-4 flex flex-col gap-2">
+              {activityList.slice(0, 5).map((row) => {
+                const tint = getAppTint(row.team);
+                const isClickable = Boolean(row.url);
+                const Tag = isClickable ? "a" : "li";
+
+                return (
+                  <Tag
+                    key={row.team + row.message}
+                    href={row.url}
+                    target={isClickable ? "_blank" : undefined}
+                    rel={isClickable ? "noopener noreferrer" : undefined}
+                    className="glass-tint group flex cursor-pointer items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-xs transition hover:scale-[1.005] sm:text-sm"
+                  >
+                    <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: tint }} />
+                    <span className="shrink-0 font-medium">{row.team}</span>
+                    <span className="text-muted-foreground truncate">{row.message}</span>
+                    <span className="text-muted-foreground ml-auto flex shrink-0 items-center gap-1 text-[11px]">
+                      {row.ago}
+                      {isClickable ? (
+                        <ExternalLink className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-70" />
+                      ) : null}
+                    </span>
+                  </Tag>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -371,82 +437,43 @@ function Landing() {
         </div>
       </section>
 
-      <section className="grid grid-cols-1 gap-5 md:grid-cols-3">
-        <div className="glass rounded-3xl p-5 md:col-span-2">
-          <div className="flex items-center gap-2">
-            <div
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-white"
-              style={{
-                background: "linear-gradient(135deg, var(--olive), var(--mediterranean))",
-              }}
-            >
-              <Star className="h-4 w-4" />
-            </div>
-            <h3 className="font-display text-lg">{messages.home.recentTitle}</h3>
-          </div>
-          <ul className="mt-4 flex flex-col gap-2">
-            {activityList.map((row) => {
-              const tint = getAppTint(row.team);
-              const isClickable = Boolean(row.url);
-              const Tag = isClickable ? "a" : "li";
-
-              return (
-                <Tag
-                  key={row.team + row.message}
-                  href={row.url}
-                  target={isClickable ? "_blank" : undefined}
-                  rel={isClickable ? "noopener noreferrer" : undefined}
-                  className="glass-tint group flex cursor-pointer items-center gap-3 rounded-xl px-4 py-3 text-sm transition hover:scale-[1.005]"
-                >
-                  <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: tint }} />
-                  <span className="shrink-0 font-medium">{row.team}</span>
-                  <span className="text-muted-foreground truncate">{row.message}</span>
-                  <span className="text-muted-foreground ml-auto flex shrink-0 items-center gap-1.5 text-xs">
-                    {row.ago}
-                    {isClickable ? (
-                      <ExternalLink className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-70" />
-                    ) : null}
-                  </span>
-                </Tag>
-              );
-            })}
-          </ul>
-        </div>
-
+      <section
+        className="relative flex flex-col items-start justify-between gap-6 overflow-hidden rounded-3xl p-6 md:flex-row md:items-center md:p-8"
+        style={{
+          background:
+            "linear-gradient(135deg, oklch(0.35 0.08 40 / 0.85), oklch(0.28 0.06 25 / 0.75))",
+          backdropFilter: "blur(24px) saturate(160%)",
+          border: "1px solid oklch(1 0 0 / 0.2)",
+          color: "oklch(0.98 0.02 85)",
+        }}
+      >
         <div
-          className="relative flex flex-col justify-between overflow-hidden rounded-3xl p-5"
+          className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full"
           style={{
-            background:
-              "linear-gradient(135deg, oklch(0.35 0.08 40 / 0.85), oklch(0.28 0.06 25 / 0.75))",
-            backdropFilter: "blur(24px) saturate(160%)",
-            border: "1px solid oklch(1 0 0 / 0.2)",
-            color: "oklch(0.98 0.02 85)",
+            background: "radial-gradient(circle, var(--sunset), transparent 70%)",
+          }}
+        />
+        <div className="relative max-w-2xl">
+          <div className="text-[10px] tracking-widest uppercase opacity-70">
+            {messages.home.servicesLabel}
+          </div>
+          <h3 className="font-display mt-1 text-2xl leading-tight md:text-3xl">
+            {messages.home.servicesTitle}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed opacity-80">{messages.home.servicesBody}</p>
+        </div>
+        <Link
+          to="/{-$locale}/contact"
+          params={{ locale }}
+          className="relative flex shrink-0 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition hover:scale-[1.02]"
+          style={{
+            background: "oklch(1 0 0 / 0.15)",
+            border: "1px solid oklch(1 0 0 / 0.25)",
+            backdropFilter: "blur(10px)",
           }}
         >
-          <div
-            className="absolute -top-16 -right-16 h-48 w-48 rounded-full"
-            style={{
-              background: "radial-gradient(circle, var(--sunset), transparent 70%)",
-            }}
-          />
-          <div className="relative">
-            <div className="text-[10px] tracking-widest uppercase opacity-70">
-              {messages.home.jobsLabel}
-            </div>
-            <h3 className="font-display mt-2 text-2xl leading-tight">{messages.home.jobsTitle}</h3>
-            <p className="mt-2 text-sm opacity-80">{messages.home.jobsBody}</p>
-          </div>
-          <button
-            className="relative mt-4 flex w-full items-center justify-center gap-1.5 rounded-xl py-2.5 text-sm font-medium transition hover:scale-[1.01]"
-            style={{
-              background: "oklch(1 0 0 / 0.15)",
-              border: "1px solid oklch(1 0 0 / 0.25)",
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <Plus className="h-4 w-4" /> {messages.home.jobsCta}
-          </button>
-        </div>
+          {messages.home.servicesCta} <ArrowRight className="h-4 w-4" />
+        </Link>
       </section>
 
       <footer className="text-muted-foreground py-4 text-center text-xs">
