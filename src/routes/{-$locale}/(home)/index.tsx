@@ -1,10 +1,19 @@
 import { getAppIcon, getAppLink, getAppTint } from "@/utils/apps";
+import {
+  formatTimeAgo,
+  getLatestGitHubActivities,
+  type GitHubActivityItem,
+} from "@/utils/github-activity";
 import { getAppItems, getMessages, useI18n } from "@/utils/i18n";
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { ChevronRight, Heart, Music4, Pause, Play, Plus, Star } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { ChevronRight, ExternalLink, Heart, Music4, Pause, Play, Plus, Star } from "lucide-react";
 
 export const Route = createFileRoute("/{-$locale}/(home)/")({
+  loader: async () => {
+    const activities = await getLatestGitHubActivities();
+    return { activities };
+  },
   head: ({ params }) => {
     const messages = getMessages(params.locale);
 
@@ -33,10 +42,51 @@ export const Route = createFileRoute("/{-$locale}/(home)/")({
 
 function Landing() {
   const { locale, messages } = useI18n();
+  const loaderData = Route.useLoaderData();
   const apps = getAppItems(locale);
   const [selectedApp, setSelectedApp] = useState<string>("pastryvital");
   const [liked, setLiked] = useState<Set<string>>(new Set(["safran"]));
   const [playing, setPlaying] = useState(false);
+  const [gitHubActivities, setGitHubActivities] = useState<GitHubActivityItem[]>(
+    loaderData?.activities ?? [],
+  );
+
+  useEffect(() => {
+    getLatestGitHubActivities().then((items) => {
+      if (items.length > 0) {
+        setGitHubActivities(items);
+      }
+    });
+  }, []);
+
+  const activityList = useMemo(() => {
+    const defaultList = messages.home.activity;
+    if (!gitHubActivities.length) {
+      return defaultList;
+    }
+
+    return defaultList.map((row) => {
+      const gitHubMatch = gitHubActivities.find(
+        (g) => g.team.toLowerCase() === row.team.toLowerCase(),
+      );
+      if (gitHubMatch) {
+        let prefix = "";
+        if (gitHubMatch.type === "release") {
+          prefix = locale === "fr" ? "release : " : "release: ";
+        } else if (gitHubMatch.type === "commit") {
+          prefix = locale === "fr" ? "commit : " : "commit: ";
+        }
+
+        return {
+          team: gitHubMatch.team,
+          message: `${prefix}${gitHubMatch.message}`,
+          ago: formatTimeAgo(gitHubMatch.date, locale),
+          url: gitHubMatch.url,
+        };
+      }
+      return row;
+    });
+  }, [gitHubActivities, messages.home.activity, locale]);
 
   const app = useMemo(
     () => apps.find((item) => item.id === selectedApp) ?? apps[0],
@@ -335,20 +385,31 @@ function Landing() {
             <h3 className="font-display text-lg">{messages.home.recentTitle}</h3>
           </div>
           <ul className="mt-4 flex flex-col gap-2">
-            {messages.home.activity.map((row) => (
-              <li
-                key={row.team + row.message}
-                className="glass-tint flex cursor-pointer items-center gap-3 rounded-xl px-4 py-3 text-sm transition hover:scale-[1.005]"
-              >
-                <span
-                  className="h-2 w-2 rounded-full"
-                  style={{ background: "var(--terracotta)" }}
-                />
-                <span className="font-medium">{row.team}</span>
-                <span className="text-muted-foreground truncate">{row.message}</span>
-                <span className="text-muted-foreground ml-auto shrink-0 text-xs">{row.ago}</span>
-              </li>
-            ))}
+            {activityList.map((row) => {
+              const tint = getAppTint(row.team);
+              const isClickable = Boolean(row.url);
+              const Tag = isClickable ? "a" : "li";
+
+              return (
+                <Tag
+                  key={row.team + row.message}
+                  href={row.url}
+                  target={isClickable ? "_blank" : undefined}
+                  rel={isClickable ? "noopener noreferrer" : undefined}
+                  className="glass-tint group flex cursor-pointer items-center gap-3 rounded-xl px-4 py-3 text-sm transition hover:scale-[1.005]"
+                >
+                  <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: tint }} />
+                  <span className="shrink-0 font-medium">{row.team}</span>
+                  <span className="text-muted-foreground truncate">{row.message}</span>
+                  <span className="text-muted-foreground ml-auto flex shrink-0 items-center gap-1.5 text-xs">
+                    {row.ago}
+                    {isClickable ? (
+                      <ExternalLink className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-70" />
+                    ) : null}
+                  </span>
+                </Tag>
+              );
+            })}
           </ul>
         </div>
 

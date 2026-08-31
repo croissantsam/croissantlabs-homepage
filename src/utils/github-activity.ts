@@ -4,16 +4,8 @@ export type GitHubActivityItem = {
   message: string;
   date: string;
   url: string;
-  type: "release" | "commit";
+  type: "release" | "commit" | "event";
 };
-
-type CacheData = {
-  timestamp: number;
-  items: GitHubActivityItem[];
-};
-
-const CACHE_KEY = "croissantlabs_github_activity_cache";
-const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 
 export const TRACKED_REPOS: { repo: string; team: string }[] = [
   { repo: "croissantsam/croissant-electron", team: "croissant-electron" },
@@ -23,7 +15,7 @@ export const TRACKED_REPOS: { repo: string; team: string }[] = [
 export function formatTimeAgo(dateString: string, locale: "fr" | "en" = "fr"): string {
   const date = new Date(dateString);
   const now = new Date();
-  const diffMs = now.getTime() - date.getTime();
+  const diffMs = Math.max(0, now.getTime() - date.getTime());
   const diffMinutes = Math.floor(diffMs / (1000 * 60));
   const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
@@ -47,92 +39,122 @@ export function formatTimeAgo(dateString: string, locale: "fr" | "en" = "fr"): s
   return locale === "fr" ? `${diffMonths} mois` : `${diffMonths}mo ago`;
 }
 
+const GITHUB_HEADERS: HeadersInit = {
+  Accept: "application/vnd.github.v3+json",
+  "User-Agent": "CroissantLabs-Web",
+};
+
 async function fetchRepoActivity(repo: string, team: string): Promise<GitHubActivityItem | null> {
+  const candidates: GitHubActivityItem[] = [];
+
   try {
-    // 1. Try to fetch latest release
-    const releaseRes = await fetch(`https://api.github.com/repos/${repo}/releases/latest`, {
-      headers: { Accept: "application/vnd.github.v3+json" },
-    });
-
-    if (releaseRes.ok) {
-      const release = await releaseRes.json();
-      if (release && release.published_at) {
-        return {
-          repo,
-          team,
-          message: `Release ${release.name || release.tag_name}`,
-          date: release.published_at,
-          url: release.html_url || `https://github.com/${repo}/releases`,
-          type: "release",
-        };
-      }
-    }
-
-    // 2. Fallback to latest commit on main/master
+    // 1. Fetch latest commits on default branch
     const commitsRes = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=1`, {
-      headers: { Accept: "application/vnd.github.v3+json" },
+      headers: GITHUB_HEADERS,
     });
 
     if (commitsRes.ok) {
       const commits = await commitsRes.json();
       if (Array.isArray(commits) && commits.length > 0) {
         const first = commits[0];
-        const rawMessage = first.commit?.message || "Latest commit";
+        const rawMessage = first.commit?.message || "Commit";
         const message = rawMessage.split("\n")[0].trim();
-        const date = first.commit?.committer?.date || first.commit?.author?.date || new Date().toISOString();
-        return {
+        const date =
+          first.commit?.committer?.date || first.commit?.author?.date || new Date().toISOString();
+
+        candidates.push({
           repo,
           team,
           message,
           date,
           url: first.html_url || `https://github.com/${repo}`,
           type: "commit",
-        };
+        });
       }
     }
   } catch (error) {
-    console.warn(`[GitHub Activity] Failed to fetch activity for ${repo}:`, error);
-  }
-
-  return null;
-}
-
-export async function getDailyGitHubActivities(): Promise<GitHubActivityItem[]> {
-  if (typeof window === "undefined") {
-    return [];
+    console.warn(`[GitHub Activity] Failed to fetch commits for ${repo}:`, error);
   }
 
   try {
-    const rawCache = localStorage.getItem(CACHE_KEY);
-    if (rawCache) {
-      const parsed: CacheData = JSON.parse(rawCache);
-      const isFresh = Date.now() - parsed.timestamp < ONE_DAY_MS;
-      if (isFresh && Array.isArray(parsed.items) && parsed.items.length > 0) {
-        return parsed.items;
+    // 2. Check latest release
+    const releaseRes = await fetch(`https://api.github.com/repos/${repo}/releases/latest`, {
+      headers: GITHUB_HEADERS,
+    });
+
+    if (releaseRes.ok) {
+      const release = await releaseRes.json();
+      if (release && release.published_at) {
+        candidates.push({
+          repo,
+          team,
+          message: release.name || release.tag_name || "Release",
+          date: release.published_at,
+          url: release.html_url || `https://github.com/${repo}/releases`,
+          type: "release",
+        });
       }
     }
   } catch {
-    // ignore localStorage read error
+    // ignore release errors
   }
 
-  // Daily fetch
-  const results = await Promise.all(
-    TRACKED_REPOS.map(({ repo, team }) => fetchRepoActivity(repo, team))
-  );
+  try {
+    // 3. Try public repo events
+    const eventsRes = await fetch(`https://api.github.com/repos/${repo}/events?per_page=5`, {
+      headers: GITHUB_HEADERS,
+    });
 
-  const items = results.filter((item): item is GitHubActivityItem => Boolean(item));
+    if (eventsRes.ok) {
+      const events = await eventsRes.json();
+      if (Array.isArray(events) && events.length > 0) {
+        const latestEvent = events[0];
+        const eventDate = latestEvent.created_at;
 
-  if (items.length > 0) {
-    try {
-      const cachePayload: CacheData = {
-        timestamp: Date.now(),
-        items,
-      };
-      localStorage.setItem(CACHE_KEY, JSON.stringify(cachePayload));
-    } catch {
-      // ignore localStorage write error
+        if (latestEvent.type === "PushEvent" && latestEvent.payload?.commits?.length > 0) {
+          const lastCommit = latestEvent.payload.commits[latestEvent.payload.commits.length - 1];
+          candidates.push({
+            repo,
+            team,
+            message: (lastCommit.message || "Commit").split("\n")[0].trim(),
+            date: eventDate,
+            url: `https://github.com/${repo}/commit/${lastCommit.sha}`,
+            type: "commit",
+          });
+        } else if (latestEvent.type === "ReleaseEvent" && latestEvent.payload?.release) {
+          const release = latestEvent.payload.release;
+          candidates.push({
+            repo,
+            team,
+            message: release.name || release.tag_name || "New release",
+            date: eventDate,
+            url: release.html_url || `https://github.com/${repo}/releases`,
+            type: "release",
+          });
+        }
+      }
     }
+  } catch {
+    // ignore events error
   }
 
-  return items;
+  if (candidates.length === 0) {
+    return null;
+  }
+
+  // Sort candidates by most recent date descending and pick the latest
+  candidates.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return candidates[0];
+}
+
+export async function getLatestGitHubActivities(): Promise<GitHubActivityItem[]> {
+  try {
+    const results = await Promise.all(
+      TRACKED_REPOS.map(({ repo, team }) => fetchRepoActivity(repo, team)),
+    );
+    return results.filter((item): item is GitHubActivityItem => Boolean(item));
+  } catch (error) {
+    console.warn("[GitHub Activity] Error fetching activities:", error);
+    return [];
+  }
 }
