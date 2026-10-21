@@ -1,5 +1,6 @@
 import { createRouter as createTanStackRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
+import type { AppId } from "./utils/i18n";
 
 export function getRouter() {
   const router = createTanStackRouter({
@@ -21,6 +22,6 @@ declare module "@tanstack/react-router" {
 
 declare module "@tanstack/react-router" {
   interface StaticDataRouteOption {
-    breadcrumb?: "overview" | "apps" | "explore" | "contact";
+    breadcrumb?: "overview" | "apps" | "explore" | "contact" | "stack" | AppId;
   }
 }

@@ -1,59 +1,116 @@
 import {
   AppWindow,
-  Camera,
+  Binary,
+  Building2,
+  Car,
+  GraduationCap,
   Heart,
-  Music4,
-  Palette,
+  Laptop,
   Sparkles,
-  TreePalm,
-  Waves,
   type LucideIcon,
 } from "lucide-react";
 
-export const appIcons: Record<string, LucideIcon> = {
-  pastryvital: Heart,
-  "llama.scriptc": Waves,
-  "llama.script": Waves,
-  calanque: Waves,
-  "croissant-electron": AppWindow,
-  olivier: TreePalm,
-  safran: Camera,
-  cigale: Music4,
-  provence: Palette,
+export type AppLinkKind = "demo" | "repo" | "npm";
+
+export type AppLink = {
+  kind: AppLinkKind;
+  href: string;
 };
 
-export const appTints: Record<string, string> = {
-  pastryvital: "oklch(0.65 0.13 220)",
-  "llama.scriptc": "oklch(0.62 0.13 200)",
-  "llama.script": "oklch(0.62 0.13 200)",
-  calanque: "oklch(0.62 0.13 200)",
-  "croissant-electron": "oklch(0.65 0.16 235)",
-  olivier: "oklch(0.58 0.10 130)",
-  safran: "oklch(0.72 0.16 60)",
-  cigale: "oklch(0.68 0.14 300)",
-  provence: "oklch(0.65 0.16 40)",
+export type App = {
+  id: string;
+  icon: LucideIcon;
+  tint: string;
+  links: AppLink[];
+  /** GitHub repo ("owner/name") backed by this app, if any. */
+  repo: string;
 };
 
-export const appLinks: Record<string, string> = {
-  pastryvital: "https://pastryvital.vercel.app",
-  "llama.scriptc": "https://github.com/croissantsam/llama.scriptc",
-  "llama.script": "https://github.com/croissantsam/llama.scriptc",
-  calanque: "https://github.com/croissantsam/llama.scriptc",
-  "croissant-electron": "https://github.com/croissantsam/croissant-electron",
-  olivier: "https://olivier.vercel.app",
-  safran: "https://safran.vercel.app",
-  cigale: "https://cigale.vercel.app",
-  provence: "https://provence.vercel.app",
-};
+export const apps: App[] = [
+  {
+    id: "pastryvital",
+    icon: Heart,
+    tint: "oklch(0.65 0.13 220)",
+    repo: "croissantsam/croissantcare",
+    links: [
+      { kind: "demo", href: "https://pastryvital.vercel.app" },
+      { kind: "repo", href: "https://github.com/croissantsam/croissantcare" },
+    ],
+  },
+  {
+    id: "logimons",
+    icon: Building2,
+    tint: "oklch(0.62 0.13 150)",
+    repo: "croissantsam/logimons",
+    links: [
+      { kind: "demo", href: "https://logimons.vercel.app" },
+      { kind: "repo", href: "https://github.com/croissantsam/logimons" },
+    ],
+  },
+  {
+    id: "openworldcar",
+    icon: Car,
+    tint: "oklch(0.68 0.14 25)",
+    repo: "croissantsam/openworldcar",
+    links: [{ kind: "repo", href: "https://github.com/croissantsam/openworldcar" }],
+  },
+  {
+    id: "kitron",
+    icon: Laptop,
+    tint: "oklch(0.6 0.12 165)",
+    repo: "croissantsam/kitron",
+    links: [{ kind: "repo", href: "https://github.com/croissantsam/kitron" }],
+  },
+  {
+    id: "scriptc",
+    icon: Binary,
+    tint: "oklch(0.62 0.13 200)",
+    repo: "croissantsam/scriptc",
+    links: [{ kind: "repo", href: "https://github.com/croissantsam/scriptc" }],
+  },
+  {
+    id: "croissant-electron",
+    icon: AppWindow,
+    tint: "oklch(0.65 0.16 235)",
+    repo: "croissantsam/croissant-electron",
+    links: [
+      { kind: "repo", href: "https://github.com/croissantsam/croissant-electron" },
+      { kind: "npm", href: "https://www.npmjs.com/package/croissant-electron" },
+    ],
+  },
+  {
+    id: "kim-these",
+    icon: GraduationCap,
+    tint: "oklch(0.68 0.14 300)",
+    repo: "croissantsam/kim-these",
+    links: [{ kind: "repo", href: "https://github.com/croissantsam/kim-these" }],
+  },
+];
+
+export function getApp(id: string): App | undefined {
+  return apps.find((app) => app.id === id);
+}
 
 export function getAppIcon(id: string): LucideIcon {
-  return appIcons[id] ?? Sparkles;
+  return getApp(id)?.icon ?? Sparkles;
 }
 
 export function getAppTint(id: string): string {
-  return appTints[id] ?? "var(--terracotta)";
+  return getApp(id)?.tint ?? "var(--terracotta)";
+}
+
+export function getAppLinks(id: string): AppLink[] {
+  return getApp(id)?.links ?? [];
 }
 
 export function getAppLink(id: string): string {
-  return appLinks[id] ?? "#";
+  return getApp(id)?.links[0]?.href ?? "#";
+}
+
+export function getAppRepo(id: string): string | undefined {
+  return getApp(id)?.repo;
+}
+
+export function getSortedAppIds(): string[] {
+  return apps.map((app) => app.id);
 }

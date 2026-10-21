@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { getSortedAppIds } from "@/utils/apps";
 
 interface SitemapPage {
   path: string;
@@ -9,6 +10,11 @@ interface SitemapPage {
 const PAGES: SitemapPage[] = [
   { path: "", changefreq: "daily", priority: 1.0 },
   { path: "/apps", changefreq: "weekly", priority: 0.9 },
+  ...getSortedAppIds().map((id): SitemapPage => ({
+    path: `/apps/${id}`,
+    changefreq: "weekly",
+    priority: 0.7,
+  })),
   { path: "/stack", changefreq: "weekly", priority: 0.9 },
   { path: "/explore", changefreq: "weekly", priority: 0.8 },
   { path: "/contact", changefreq: "monthly", priority: 0.8 },

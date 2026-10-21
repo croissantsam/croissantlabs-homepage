@@ -10,9 +10,36 @@ export type GitHubActivityItem = {
   type: "release" | "commit" | "event";
 };
 
+export type AppCommit = {
+  sha: string;
+  message: string;
+  date: string;
+  url: string;
+};
+
+function githubHeaders(): Record<string, string> {
+  const headers: Record<string, string> = {
+    Accept: "application/vnd.github.v3+json",
+    "User-Agent": "CroissantLabs-Web",
+  };
+
+  const token =
+    typeof process !== "undefined"
+      ? process.env?.GITHUB_TOKEN || process.env?.VITE_GITHUB_TOKEN
+      : undefined;
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  return headers;
+}
+
 export const TRACKED_REPOS: { repo: string; team: string }[] = [
   { repo: "croissantsam/croissant-electron", team: "croissant-electron" },
-  { repo: "croissantsam/llama.scriptc", team: "llama.scriptc" },
+  { repo: "croissantsam/logimons", team: "logimons" },
+  { repo: "croissantsam/openworldcar", team: "openworldcar" },
+  { repo: "croissantsam/scriptc", team: "scriptc" },
 ];
 
 export function formatTimeAgo(dateString: string, locale: "fr" | "en" = "fr"): string {
@@ -191,6 +218,48 @@ export const getLatestGitHubActivities = createServerFn({
     return cachedActivities?.items ?? [];
   }
 });
+
+const recentCommitsCache = new Map<string, { timestamp: number; items: AppCommit[] }>();
+
+export const getLatestAppCommits = createServerFn({ method: "GET" })
+  .validator((repo: string) => repo)
+  .handler(async ({ data: repo }): Promise<AppCommit[]> => {
+    const cached = recentCommitsCache.get(repo);
+
+    if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+      return cached.items;
+    }
+
+    try {
+      const response = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=5`, {
+        headers: githubHeaders(),
+      });
+
+      if (response.ok) {
+        const raw = await response.json();
+        const items: AppCommit[] = Array.isArray(raw)
+          ? raw
+              .filter((entry) => entry?.sha && entry?.commit?.message)
+              .map((entry) => ({
+                sha: String(entry.sha).slice(0, 7),
+                message: String(entry.commit.message).split("\n")[0].trim(),
+                date: entry.commit?.committer?.date || entry.commit?.author?.date,
+                url: entry.html_url || `https://github.com/${repo}/commit/${entry.sha}`,
+              }))
+              .filter((commit): commit is AppCommit => Boolean(commit.date))
+          : [];
+
+        recentCommitsCache.set(repo, { timestamp: Date.now(), items });
+
+        return items;
+      }
+
+      // If fetch failed (rate limit, etc.), return previous cache if available
+      return recentCommitsCache.get(repo)?.items ?? [];
+    } catch {
+      return recentCommitsCache.get(repo)?.items ?? [];
+    }
+  });
 
 export const githubActivitiesQueryOptions = () =>
   queryOptions({

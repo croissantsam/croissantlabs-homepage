@@ -1,4 +1,5 @@
-import { getAppIcon, getAppLink, getAppTint } from "@/utils/apps";
+import { getAppDetailPath } from "@/utils/app-routes";
+import { getAppIcon, getAppTint } from "@/utils/apps";
 import {
   formatTimeAgo,
   getLatestGitHubActivities,
@@ -54,7 +55,7 @@ function Landing() {
   const loaderData = Route.useLoaderData();
   const apps = getAppItems(locale);
   const [selectedApp, setSelectedApp] = useState<string>("pastryvital");
-  const [liked, setLiked] = useState<Set<string>>(new Set(["safran"]));
+  const [liked, setLiked] = useState<Set<string>>(new Set(["pastryvital"]));
   const [playing, setPlaying] = useState(false);
 
   const { data: gitHubActivities = [] } = useGitHubActivities(loaderData?.activities);
@@ -242,9 +243,13 @@ function Landing() {
               <h2 className="font-display text-lg">{messages.home.appsTitle}</h2>
               <p className="text-muted-foreground text-xs">{messages.home.appsSubtitle}</p>
             </div>
-            <button className="text-muted-foreground hover:text-foreground flex items-center gap-1 text-xs">
+            <Link
+              to="/{-$locale}/apps"
+              params={{ locale }}
+              className="text-muted-foreground hover:text-foreground flex items-center gap-1 text-xs"
+            >
               {messages.home.seeAll} <ChevronRight className="h-3 w-3" />
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -310,11 +315,7 @@ function Landing() {
                       </span>
                     </div>
                     <div className="text-muted-foreground mt-1 text-xs">{item.tagline}</div>
-                    <div className="text-muted-foreground mt-3 text-[11px]">
-                      {item.status === "boilerplate"
-                        ? "GitHub Starter"
-                        : `${item.users} ${messages.common.users}`}
-                    </div>
+                    <div className="text-muted-foreground mt-3 text-[11px]">{item.kind}</div>
                   </div>
                 </button>
               );
@@ -353,50 +354,37 @@ function Landing() {
             </div>
 
             <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-              {app.status === "boilerplate"
-                ? [
-                    { key: "repo", label: "Repo", value: "GitHub" },
-                    {
-                      key: "type",
-                      label: "Type",
-                      value: app.id === "llama.scriptc" ? "Engine" : "Starter",
-                    },
-                    {
-                      key: "version",
-                      label: "Stack",
-                      value: app.id === "llama.scriptc" ? "ScriptC" : "Electron",
-                    },
-                  ].map((stat) => (
-                    <div key={stat.key} className="glass-tint rounded-xl py-2">
-                      <div className="font-display text-sm">{stat.value}</div>
-                      <div className="text-muted-foreground text-[10px]">{stat.label}</div>
-                    </div>
-                  ))
-                : [
-                    { key: "mau", label: "MAU", value: app.users },
-                    { key: "rating", label: "Rating", value: "4.9" },
-                    { key: "version", label: "v", value: "2.4" },
-                  ].map((stat) => (
-                    <div key={stat.key} className="glass-tint rounded-xl py-2">
-                      <div className="font-display">{stat.value}</div>
-                      <div className="text-muted-foreground text-[10px]">{stat.label}</div>
-                    </div>
-                  ))}
+              {[
+                {
+                  key: "kind",
+                  label: locale === "fr" ? "Type" : "Type",
+                  value: app.kind,
+                },
+                {
+                  key: "stack",
+                  label: locale === "fr" ? "Technologies" : "Technologies",
+                  value: `${app.details.stack.length}`,
+                },
+                {
+                  key: "features",
+                  label: locale === "fr" ? "Points clés" : "Key points",
+                  value: `${app.details.features.length}`,
+                },
+              ].map((stat) => (
+                <div key={stat.key} className="glass-tint rounded-xl py-2">
+                  <div className="font-display text-sm">{stat.value}</div>
+                  <div className="text-muted-foreground text-[10px]">{stat.label}</div>
+                </div>
+              ))}
             </div>
 
-            <a
-              href={getAppLink(app.id)}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to={getAppDetailPath(app.id)}
+              params={{ locale }}
               className="glass-tint mt-4 flex w-full items-center justify-center gap-1.5 rounded-xl py-2 text-sm font-medium transition hover:scale-[1.01]"
             >
-              {app.status === "boilerplate"
-                ? locale === "fr"
-                  ? "Voir sur GitHub"
-                  : "View on GitHub"
-                : messages.common.openDemo}{" "}
-              <ChevronRight className="h-3.5 w-3.5" />
-            </a>
+              {messages.common.detail.discover} <ChevronRight className="h-3.5 w-3.5" />
+            </Link>
           </div>
 
           <div className="glass rounded-3xl p-5">

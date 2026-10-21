@@ -8,5 +8,5 @@ export const Route = createFileRoute("/")({
 function RedirectToPreferredLocale() {
   const locale = getPreferredLocale();
 
-  return <Navigate to={`/${locale}`} replace />;
+  return <Navigate to="/{-$locale}" params={{ locale }} replace />;
 }

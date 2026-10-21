@@ -1,4 +1,5 @@
-import { getAppIcon, getAppLink, getAppTint } from "@/utils/apps";
+import { getAppIcon, getAppTint } from "@/utils/apps";
+import { getAppDetailPath } from "@/utils/app-routes";
 import { getAppItems, useI18n } from "@/utils/i18n";
 import { getNavItems } from "@/utils/routes";
 import { Link } from "@tanstack/react-router";
@@ -90,14 +91,12 @@ export function AppSidebar() {
                   {apps.map((app) => {
                     const Icon = getAppIcon(app.id);
                     const tint = getAppTint(app.id);
-                    const href = getAppLink(app.id);
 
                     return (
-                      <a
+                      <Link
                         key={app.id}
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        to={getAppDetailPath(app.id)}
+                        params={{ locale }}
                         className="text-muted-foreground hover:text-foreground flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition hover:bg-white/30"
                       >
                         <span
@@ -107,7 +106,7 @@ export function AppSidebar() {
                           <Icon className="h-3.5 w-3.5" />
                         </span>
                         <span className="truncate">{app.name}</span>
-                      </a>
+                      </Link>
                     );
                   })}
                 </div>

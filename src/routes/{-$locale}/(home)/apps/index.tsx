@@ -1,9 +1,10 @@
-import { getAppIcon, getAppLink, getAppTint } from "@/utils/apps";
+import { getAppDetailPath } from "@/utils/app-routes";
+import { getAppIcon, getAppTint } from "@/utils/apps";
 import { getAppItems, getMessages, useI18n } from "@/utils/i18n";
-import { createFileRoute } from "@tanstack/react-router";
-import { ExternalLink } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 
-export const Route = createFileRoute("/{-$locale}/(home)/apps")({
+export const Route = createFileRoute("/{-$locale}/(home)/apps/")({
   head: ({ params }) => {
     const messages = getMessages(params.locale);
 
@@ -50,14 +51,12 @@ function RouteComponent() {
         {apps.map((app) => {
           const Icon = getAppIcon(app.id);
           const tint = getAppTint(app.id);
-          const href = getAppLink(app.id);
 
           return (
-            <a
+            <Link
               key={app.id}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
+              to={getAppDetailPath(app.id)}
+              params={{ locale }}
               className="glass-tint group flex flex-col justify-between rounded-2xl p-5 transition hover:scale-[1.01]"
               style={{
                 ["--app-tint" as string]: tint,
@@ -93,21 +92,13 @@ function RouteComponent() {
                 </span>
               </div>
               <div className="text-muted-foreground mt-4 flex items-center justify-between text-xs">
-                <span>
-                  {app.status === "boilerplate"
-                    ? "GitHub Starter"
-                    : `${app.users} ${messages.common.users}`}
-                </span>
-                <span className="flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-                  {app.status === "boilerplate"
-                    ? locale === "fr"
-                      ? "Voir sur GitHub"
-                      : "View on GitHub"
-                    : messages.common.openDemo}
-                  <ExternalLink className="h-3 w-3" />
+                <span>{app.kind}</span>
+                <span className="flex items-center gap-1">
+                  {messages.common.detail.discover}
+                  <ArrowRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
                 </span>
               </div>
-            </a>
+            </Link>
           );
         })}
       </div>

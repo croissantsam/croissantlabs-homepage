@@ -1,0 +1,17 @@
+import type { AppId } from "@/utils/i18n";
+
+const appDetailPaths = {
+  pastryvital: "/{-$locale}/apps/pastryvital",
+  logimons: "/{-$locale}/apps/logimons",
+  openworldcar: "/{-$locale}/apps/openworldcar",
+  kitron: "/{-$locale}/apps/kitron",
+  scriptc: "/{-$locale}/apps/scriptc",
+  "croissant-electron": "/{-$locale}/apps/croissant-electron",
+  "kim-these": "/{-$locale}/apps/kim-these",
+} as const;
+
+export type AppDetailPath = (typeof appDetailPaths)[AppId];
+
+export function getAppDetailPath(id: string): AppDetailPath {
+  return appDetailPaths[id as AppId];
+}

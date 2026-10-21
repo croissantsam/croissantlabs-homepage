@@ -8,7 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@/ui/components/breadcrumb";
 import { SidebarTrigger } from "@/ui/components/sidebar";
-import { replaceLocaleInPathname, useI18n } from "@/utils/i18n";
+import { getAppItems, replaceLocaleInPathname, useI18n } from "@/utils/i18n";
 
 export const Header = () => {
   const location = useLocation();
@@ -22,6 +22,11 @@ export const Header = () => {
     }));
 
   const currentCrumb = crumbs[crumbs.length - 1];
+
+  const currentCrumbLabel =
+    currentCrumb.key in messages.nav
+      ? messages.nav[currentCrumb.key as keyof typeof messages.nav]
+      : (getAppItems(locale).find((app) => app.id === currentCrumb.key)?.name ?? currentCrumb.key);
 
   return (
     <header className="glass flex w-full items-center gap-3 rounded-3xl p-3 pl-5">
@@ -37,7 +42,7 @@ export const Header = () => {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink render={<Link to={currentCrumb.to} />}>
-                {messages.nav[currentCrumb.key]}
+                {currentCrumbLabel}
               </BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>

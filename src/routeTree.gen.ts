@@ -13,10 +13,17 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as Char123LocaleChar125homeRouteRouteImport } from './routes/{-$locale}/(home)/route'
 import { Route as Char123LocaleChar125homeIndexRouteImport } from './routes/{-$locale}/(home)/index'
-import { Route as Char123LocaleChar125homeAppsRouteImport } from './routes/{-$locale}/(home)/apps'
 import { Route as Char123LocaleChar125homeContactRouteImport } from './routes/{-$locale}/(home)/contact'
 import { Route as Char123LocaleChar125homeExploreRouteImport } from './routes/{-$locale}/(home)/explore'
 import { Route as Char123LocaleChar125homeStackRouteImport } from './routes/{-$locale}/(home)/stack'
+import { Route as Char123LocaleChar125homeAppsIndexRouteImport } from './routes/{-$locale}/(home)/apps/index'
+import { Route as Char123LocaleChar125homeAppsCroissantElectronRouteImport } from './routes/{-$locale}/(home)/apps/croissant-electron'
+import { Route as Char123LocaleChar125homeAppsKimTheseRouteImport } from './routes/{-$locale}/(home)/apps/kim-these'
+import { Route as Char123LocaleChar125homeAppsKitronRouteImport } from './routes/{-$locale}/(home)/apps/kitron'
+import { Route as Char123LocaleChar125homeAppsLogimonsRouteImport } from './routes/{-$locale}/(home)/apps/logimons'
+import { Route as Char123LocaleChar125homeAppsOpenworldcarRouteImport } from './routes/{-$locale}/(home)/apps/openworldcar'
+import { Route as Char123LocaleChar125homeAppsPastryvitalRouteImport } from './routes/{-$locale}/(home)/apps/pastryvital'
+import { Route as Char123LocaleChar125homeAppsScriptcRouteImport } from './routes/{-$locale}/(home)/apps/scriptc'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,12 +47,6 @@ const Char123LocaleChar125homeIndexRoute =
     path: '/',
     getParentRoute: () => Char123LocaleChar125homeRouteRoute,
   } as any)
-const Char123LocaleChar125homeAppsRoute =
-  Char123LocaleChar125homeAppsRouteImport.update({
-    id: '/apps',
-    path: '/apps',
-    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
-  } as any)
 const Char123LocaleChar125homeContactRoute =
   Char123LocaleChar125homeContactRouteImport.update({
     id: '/contact',
@@ -64,36 +65,105 @@ const Char123LocaleChar125homeStackRoute =
     path: '/stack',
     getParentRoute: () => Char123LocaleChar125homeRouteRoute,
   } as any)
+const Char123LocaleChar125homeAppsIndexRoute =
+  Char123LocaleChar125homeAppsIndexRouteImport.update({
+    id: '/apps/',
+    path: '/apps/',
+    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
+  } as any)
+const Char123LocaleChar125homeAppsCroissantElectronRoute =
+  Char123LocaleChar125homeAppsCroissantElectronRouteImport.update({
+    id: '/apps/croissant-electron',
+    path: '/apps/croissant-electron',
+    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
+  } as any)
+const Char123LocaleChar125homeAppsKimTheseRoute =
+  Char123LocaleChar125homeAppsKimTheseRouteImport.update({
+    id: '/apps/kim-these',
+    path: '/apps/kim-these',
+    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
+  } as any)
+const Char123LocaleChar125homeAppsKitronRoute =
+  Char123LocaleChar125homeAppsKitronRouteImport.update({
+    id: '/apps/kitron',
+    path: '/apps/kitron',
+    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
+  } as any)
+const Char123LocaleChar125homeAppsLogimonsRoute =
+  Char123LocaleChar125homeAppsLogimonsRouteImport.update({
+    id: '/apps/logimons',
+    path: '/apps/logimons',
+    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
+  } as any)
+const Char123LocaleChar125homeAppsOpenworldcarRoute =
+  Char123LocaleChar125homeAppsOpenworldcarRouteImport.update({
+    id: '/apps/openworldcar',
+    path: '/apps/openworldcar',
+    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
+  } as any)
+const Char123LocaleChar125homeAppsPastryvitalRoute =
+  Char123LocaleChar125homeAppsPastryvitalRouteImport.update({
+    id: '/apps/pastryvital',
+    path: '/apps/pastryvital',
+    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
+  } as any)
+const Char123LocaleChar125homeAppsScriptcRoute =
+  Char123LocaleChar125homeAppsScriptcRouteImport.update({
+    id: '/apps/scriptc',
+    path: '/apps/scriptc',
+    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/{-$locale}': typeof Char123LocaleChar125homeRouteRouteWithChildren
-  '/{-$locale}/apps': typeof Char123LocaleChar125homeAppsRoute
   '/{-$locale}/contact': typeof Char123LocaleChar125homeContactRoute
   '/{-$locale}/explore': typeof Char123LocaleChar125homeExploreRoute
   '/{-$locale}/stack': typeof Char123LocaleChar125homeStackRoute
   '/{-$locale}/': typeof Char123LocaleChar125homeIndexRoute
+  '/{-$locale}/apps/croissant-electron': typeof Char123LocaleChar125homeAppsCroissantElectronRoute
+  '/{-$locale}/apps/kim-these': typeof Char123LocaleChar125homeAppsKimTheseRoute
+  '/{-$locale}/apps/kitron': typeof Char123LocaleChar125homeAppsKitronRoute
+  '/{-$locale}/apps/logimons': typeof Char123LocaleChar125homeAppsLogimonsRoute
+  '/{-$locale}/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
+  '/{-$locale}/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
+  '/{-$locale}/apps/scriptc': typeof Char123LocaleChar125homeAppsScriptcRoute
+  '/{-$locale}/apps/': typeof Char123LocaleChar125homeAppsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/{-$locale}/apps': typeof Char123LocaleChar125homeAppsRoute
   '/{-$locale}/contact': typeof Char123LocaleChar125homeContactRoute
   '/{-$locale}/explore': typeof Char123LocaleChar125homeExploreRoute
   '/{-$locale}/stack': typeof Char123LocaleChar125homeStackRoute
   '/{-$locale}': typeof Char123LocaleChar125homeIndexRoute
+  '/{-$locale}/apps/croissant-electron': typeof Char123LocaleChar125homeAppsCroissantElectronRoute
+  '/{-$locale}/apps/kim-these': typeof Char123LocaleChar125homeAppsKimTheseRoute
+  '/{-$locale}/apps/kitron': typeof Char123LocaleChar125homeAppsKitronRoute
+  '/{-$locale}/apps/logimons': typeof Char123LocaleChar125homeAppsLogimonsRoute
+  '/{-$locale}/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
+  '/{-$locale}/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
+  '/{-$locale}/apps/scriptc': typeof Char123LocaleChar125homeAppsScriptcRoute
+  '/{-$locale}/apps': typeof Char123LocaleChar125homeAppsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/{-$locale}/(home)': typeof Char123LocaleChar125homeRouteRouteWithChildren
-  '/{-$locale}/(home)/apps': typeof Char123LocaleChar125homeAppsRoute
   '/{-$locale}/(home)/contact': typeof Char123LocaleChar125homeContactRoute
   '/{-$locale}/(home)/explore': typeof Char123LocaleChar125homeExploreRoute
   '/{-$locale}/(home)/stack': typeof Char123LocaleChar125homeStackRoute
   '/{-$locale}/(home)/': typeof Char123LocaleChar125homeIndexRoute
+  '/{-$locale}/(home)/apps/croissant-electron': typeof Char123LocaleChar125homeAppsCroissantElectronRoute
+  '/{-$locale}/(home)/apps/kim-these': typeof Char123LocaleChar125homeAppsKimTheseRoute
+  '/{-$locale}/(home)/apps/kitron': typeof Char123LocaleChar125homeAppsKitronRoute
+  '/{-$locale}/(home)/apps/logimons': typeof Char123LocaleChar125homeAppsLogimonsRoute
+  '/{-$locale}/(home)/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
+  '/{-$locale}/(home)/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
+  '/{-$locale}/(home)/apps/scriptc': typeof Char123LocaleChar125homeAppsScriptcRoute
+  '/{-$locale}/(home)/apps/': typeof Char123LocaleChar125homeAppsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,30 +171,51 @@ export interface FileRouteTypes {
     | '/'
     | '/sitemap.xml'
     | '/{-$locale}'
-    | '/{-$locale}/apps'
     | '/{-$locale}/contact'
     | '/{-$locale}/explore'
     | '/{-$locale}/stack'
     | '/{-$locale}/'
+    | '/{-$locale}/apps/croissant-electron'
+    | '/{-$locale}/apps/kim-these'
+    | '/{-$locale}/apps/kitron'
+    | '/{-$locale}/apps/logimons'
+    | '/{-$locale}/apps/openworldcar'
+    | '/{-$locale}/apps/pastryvital'
+    | '/{-$locale}/apps/scriptc'
+    | '/{-$locale}/apps/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/sitemap.xml'
-    | '/{-$locale}/apps'
     | '/{-$locale}/contact'
     | '/{-$locale}/explore'
     | '/{-$locale}/stack'
     | '/{-$locale}'
+    | '/{-$locale}/apps/croissant-electron'
+    | '/{-$locale}/apps/kim-these'
+    | '/{-$locale}/apps/kitron'
+    | '/{-$locale}/apps/logimons'
+    | '/{-$locale}/apps/openworldcar'
+    | '/{-$locale}/apps/pastryvital'
+    | '/{-$locale}/apps/scriptc'
+    | '/{-$locale}/apps'
   id:
     | '__root__'
     | '/'
     | '/sitemap.xml'
     | '/{-$locale}/(home)'
-    | '/{-$locale}/(home)/apps'
     | '/{-$locale}/(home)/contact'
     | '/{-$locale}/(home)/explore'
     | '/{-$locale}/(home)/stack'
     | '/{-$locale}/(home)/'
+    | '/{-$locale}/(home)/apps/croissant-electron'
+    | '/{-$locale}/(home)/apps/kim-these'
+    | '/{-$locale}/(home)/apps/kitron'
+    | '/{-$locale}/(home)/apps/logimons'
+    | '/{-$locale}/(home)/apps/openworldcar'
+    | '/{-$locale}/(home)/apps/pastryvital'
+    | '/{-$locale}/(home)/apps/scriptc'
+    | '/{-$locale}/(home)/apps/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -163,13 +254,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125homeIndexRouteImport
       parentRoute: typeof Char123LocaleChar125homeRouteRoute
     }
-    '/{-$locale}/(home)/apps': {
-      id: '/{-$locale}/(home)/apps'
-      path: '/apps'
-      fullPath: '/{-$locale}/apps'
-      preLoaderRoute: typeof Char123LocaleChar125homeAppsRouteImport
-      parentRoute: typeof Char123LocaleChar125homeRouteRoute
-    }
     '/{-$locale}/(home)/contact': {
       id: '/{-$locale}/(home)/contact'
       path: '/contact'
@@ -191,24 +275,102 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125homeStackRouteImport
       parentRoute: typeof Char123LocaleChar125homeRouteRoute
     }
+    '/{-$locale}/(home)/apps/': {
+      id: '/{-$locale}/(home)/apps/'
+      path: '/apps'
+      fullPath: '/{-$locale}/apps/'
+      preLoaderRoute: typeof Char123LocaleChar125homeAppsIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125homeRouteRoute
+    }
+    '/{-$locale}/(home)/apps/croissant-electron': {
+      id: '/{-$locale}/(home)/apps/croissant-electron'
+      path: '/apps/croissant-electron'
+      fullPath: '/{-$locale}/apps/croissant-electron'
+      preLoaderRoute: typeof Char123LocaleChar125homeAppsCroissantElectronRouteImport
+      parentRoute: typeof Char123LocaleChar125homeRouteRoute
+    }
+    '/{-$locale}/(home)/apps/kim-these': {
+      id: '/{-$locale}/(home)/apps/kim-these'
+      path: '/apps/kim-these'
+      fullPath: '/{-$locale}/apps/kim-these'
+      preLoaderRoute: typeof Char123LocaleChar125homeAppsKimTheseRouteImport
+      parentRoute: typeof Char123LocaleChar125homeRouteRoute
+    }
+    '/{-$locale}/(home)/apps/kitron': {
+      id: '/{-$locale}/(home)/apps/kitron'
+      path: '/apps/kitron'
+      fullPath: '/{-$locale}/apps/kitron'
+      preLoaderRoute: typeof Char123LocaleChar125homeAppsKitronRouteImport
+      parentRoute: typeof Char123LocaleChar125homeRouteRoute
+    }
+    '/{-$locale}/(home)/apps/logimons': {
+      id: '/{-$locale}/(home)/apps/logimons'
+      path: '/apps/logimons'
+      fullPath: '/{-$locale}/apps/logimons'
+      preLoaderRoute: typeof Char123LocaleChar125homeAppsLogimonsRouteImport
+      parentRoute: typeof Char123LocaleChar125homeRouteRoute
+    }
+    '/{-$locale}/(home)/apps/openworldcar': {
+      id: '/{-$locale}/(home)/apps/openworldcar'
+      path: '/apps/openworldcar'
+      fullPath: '/{-$locale}/apps/openworldcar'
+      preLoaderRoute: typeof Char123LocaleChar125homeAppsOpenworldcarRouteImport
+      parentRoute: typeof Char123LocaleChar125homeRouteRoute
+    }
+    '/{-$locale}/(home)/apps/pastryvital': {
+      id: '/{-$locale}/(home)/apps/pastryvital'
+      path: '/apps/pastryvital'
+      fullPath: '/{-$locale}/apps/pastryvital'
+      preLoaderRoute: typeof Char123LocaleChar125homeAppsPastryvitalRouteImport
+      parentRoute: typeof Char123LocaleChar125homeRouteRoute
+    }
+    '/{-$locale}/(home)/apps/scriptc': {
+      id: '/{-$locale}/(home)/apps/scriptc'
+      path: '/apps/scriptc'
+      fullPath: '/{-$locale}/apps/scriptc'
+      preLoaderRoute: typeof Char123LocaleChar125homeAppsScriptcRouteImport
+      parentRoute: typeof Char123LocaleChar125homeRouteRoute
+    }
   }
 }
 
 interface Char123LocaleChar125homeRouteRouteChildren {
-  Char123LocaleChar125homeAppsRoute: typeof Char123LocaleChar125homeAppsRoute
   Char123LocaleChar125homeContactRoute: typeof Char123LocaleChar125homeContactRoute
   Char123LocaleChar125homeExploreRoute: typeof Char123LocaleChar125homeExploreRoute
   Char123LocaleChar125homeStackRoute: typeof Char123LocaleChar125homeStackRoute
   Char123LocaleChar125homeIndexRoute: typeof Char123LocaleChar125homeIndexRoute
+  Char123LocaleChar125homeAppsCroissantElectronRoute: typeof Char123LocaleChar125homeAppsCroissantElectronRoute
+  Char123LocaleChar125homeAppsKimTheseRoute: typeof Char123LocaleChar125homeAppsKimTheseRoute
+  Char123LocaleChar125homeAppsKitronRoute: typeof Char123LocaleChar125homeAppsKitronRoute
+  Char123LocaleChar125homeAppsLogimonsRoute: typeof Char123LocaleChar125homeAppsLogimonsRoute
+  Char123LocaleChar125homeAppsOpenworldcarRoute: typeof Char123LocaleChar125homeAppsOpenworldcarRoute
+  Char123LocaleChar125homeAppsPastryvitalRoute: typeof Char123LocaleChar125homeAppsPastryvitalRoute
+  Char123LocaleChar125homeAppsScriptcRoute: typeof Char123LocaleChar125homeAppsScriptcRoute
+  Char123LocaleChar125homeAppsIndexRoute: typeof Char123LocaleChar125homeAppsIndexRoute
 }
 
 const Char123LocaleChar125homeRouteRouteChildren: Char123LocaleChar125homeRouteRouteChildren =
   {
-    Char123LocaleChar125homeAppsRoute: Char123LocaleChar125homeAppsRoute,
     Char123LocaleChar125homeContactRoute: Char123LocaleChar125homeContactRoute,
     Char123LocaleChar125homeExploreRoute: Char123LocaleChar125homeExploreRoute,
     Char123LocaleChar125homeStackRoute: Char123LocaleChar125homeStackRoute,
     Char123LocaleChar125homeIndexRoute: Char123LocaleChar125homeIndexRoute,
+    Char123LocaleChar125homeAppsCroissantElectronRoute:
+      Char123LocaleChar125homeAppsCroissantElectronRoute,
+    Char123LocaleChar125homeAppsKimTheseRoute:
+      Char123LocaleChar125homeAppsKimTheseRoute,
+    Char123LocaleChar125homeAppsKitronRoute:
+      Char123LocaleChar125homeAppsKitronRoute,
+    Char123LocaleChar125homeAppsLogimonsRoute:
+      Char123LocaleChar125homeAppsLogimonsRoute,
+    Char123LocaleChar125homeAppsOpenworldcarRoute:
+      Char123LocaleChar125homeAppsOpenworldcarRoute,
+    Char123LocaleChar125homeAppsPastryvitalRoute:
+      Char123LocaleChar125homeAppsPastryvitalRoute,
+    Char123LocaleChar125homeAppsScriptcRoute:
+      Char123LocaleChar125homeAppsScriptcRoute,
+    Char123LocaleChar125homeAppsIndexRoute:
+      Char123LocaleChar125homeAppsIndexRoute,
   }
 
 const Char123LocaleChar125homeRouteRouteWithChildren =
