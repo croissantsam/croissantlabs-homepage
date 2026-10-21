@@ -156,17 +156,23 @@ function Landing() {
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              <button
+              <Link
+                to="/{-$locale}/apps"
+                params={{ locale }}
                 className="text-primary-foreground rounded-xl px-5 py-2.5 text-sm font-medium shadow-lg transition hover:scale-[1.02]"
                 style={{
                   background: "linear-gradient(135deg, var(--terracotta), var(--sunset))",
                 }}
               >
                 {messages.home.primaryCta}
-              </button>
-              <button className="glass-tint rounded-xl px-5 py-2.5 text-sm font-medium transition hover:scale-[1.02]">
+              </Link>
+              <Link
+                to="/{-$locale}/contact"
+                params={{ locale }}
+                className="glass-tint rounded-xl px-5 py-2.5 text-sm font-medium transition hover:scale-[1.02]"
+              >
                 {messages.home.secondaryCta}
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -246,9 +252,10 @@ function Landing() {
             <Link
               to="/{-$locale}/apps"
               params={{ locale }}
-              className="text-muted-foreground hover:text-foreground flex items-center gap-1 text-xs"
+              className="text-muted-foreground hover:text-foreground group flex items-center gap-1 text-xs transition-colors"
             >
-              {messages.home.seeAll} <ChevronRight className="h-3 w-3" />
+              {messages.home.seeAll}{" "}
+              <ChevronRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
 
@@ -381,9 +388,10 @@ function Landing() {
             <Link
               to={getAppDetailPath(app.id)}
               params={{ locale }}
-              className="glass-tint mt-4 flex w-full items-center justify-center gap-1.5 rounded-xl py-2 text-sm font-medium transition hover:scale-[1.01]"
+              className="glass-tint group mt-4 flex w-full items-center justify-center gap-1.5 rounded-xl py-2 text-sm font-medium transition hover:scale-[1.01]"
             >
-              {messages.common.detail.discover} <ChevronRight className="h-3.5 w-3.5" />
+              {messages.common.detail.discover}
+              <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
 
@@ -463,14 +471,15 @@ function Landing() {
         <Link
           to="/{-$locale}/contact"
           params={{ locale }}
-          className="relative flex shrink-0 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition hover:scale-[1.02]"
+          className="group relative flex shrink-0 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition hover:scale-[1.02]"
           style={{
             background: "oklch(1 0 0 / 0.15)",
             border: "1px solid oklch(1 0 0 / 0.25)",
             backdropFilter: "blur(10px)",
           }}
         >
-          {messages.home.servicesCta} <ArrowRight className="h-4 w-4" />
+          {messages.home.servicesCta}{" "}
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
       </section>
 

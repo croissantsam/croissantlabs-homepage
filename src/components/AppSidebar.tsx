@@ -71,9 +71,11 @@ export function AppSidebar() {
                         >
                           <Icon className="h-4 w-4" />
                           <span>{item.label}</span>
-                          {isActive ? (
-                            <ChevronRight className="ml-auto h-3.5 w-3.5 opacity-60" />
-                          ) : null}
+                          <ChevronRight
+                            className={`ml-auto h-3.5 transition-opacity ${
+                              isActive ? "opacity-60" : "opacity-0 group-hover:opacity-60"
+                            }`}
+                          />
                         </SidebarMenuButton>
                       )}
                     </Link>

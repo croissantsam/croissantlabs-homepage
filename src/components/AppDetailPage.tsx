@@ -41,9 +41,9 @@ function AppDetailPage({ appId, commits }: { appId: AppId; commits?: AppCommit[]
         <Link
           to="/{-$locale}/apps"
           params={{ locale }}
-          className="text-muted-foreground hover:text-foreground flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-medium transition"
+          className="text-muted-foreground hover:text-foreground group flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-medium transition-colors"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
           {detail.backToApps}
         </Link>
         <span className="rounded-full px-2.5 py-1 text-[11px]" style={{ background: statusStyle }}>
@@ -107,7 +107,7 @@ function AppDetailPage({ appId, commits }: { appId: AppId; commits?: AppCommit[]
               href={`${repoLink.href}/commits`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground flex shrink-0 items-center gap-1 text-xs transition"
+              className="text-muted-foreground hover:text-foreground flex shrink-0 items-center gap-1 text-xs transition-colors hover:underline hover:underline-offset-4"
             >
               {detail.viewAllCommits} <ExternalLink className="h-3 w-3" />
             </a>
@@ -134,10 +134,12 @@ function AppDetailPage({ appId, commits }: { appId: AppId; commits?: AppCommit[]
                   >
                     <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: tint }} />
                     <span className="shrink-0 font-mono text-[11px] opacity-70">{commit.sha}</span>
-                    <span className="text-muted-foreground truncate">{commit.message}</span>
+                    <span className="text-muted-foreground group-hover:text-foreground truncate transition-colors">
+                      {commit.message}
+                    </span>
                     <span className="text-muted-foreground ml-auto flex shrink-0 items-center gap-1 text-[11px]">
                       {formatTimeAgo(commit.date, locale)}
-                      <ExternalLink className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-70" />
+                      <ExternalLink className="opacity-0 transition-opacity group-hover:opacity-70" />
                     </span>
                   </a>
                 </li>

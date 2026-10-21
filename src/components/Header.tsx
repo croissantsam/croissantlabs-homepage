@@ -35,13 +35,28 @@ export const Header = () => {
         <Breadcrumb className="hidden md:block">
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink render={<Link to="/{-$locale}" params={{ locale }} />}>
+              <BreadcrumbLink
+                render={
+                  <Link
+                    to="/{-$locale}"
+                    params={{ locale }}
+                    className="hover:text-foreground transition-colors hover:underline hover:underline-offset-4"
+                  />
+                }
+              >
                 {messages.header.dashboard}
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink render={<Link to={currentCrumb.to} />}>
+              <BreadcrumbLink
+                render={
+                  <Link
+                    to={currentCrumb.to}
+                    className="hover:text-foreground transition-colors hover:underline hover:underline-offset-4"
+                  />
+                }
+              >
                 {currentCrumbLabel}
               </BreadcrumbLink>
             </BreadcrumbItem>
