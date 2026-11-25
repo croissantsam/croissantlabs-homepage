@@ -19,12 +19,10 @@ import { Route as Char123LocaleChar125homeStackRouteImport } from './routes/{-$l
 import { Route as Char123LocaleChar125homeAppsIndexRouteImport } from './routes/{-$locale}/(home)/apps/index'
 import { Route as Char123LocaleChar125homeAppsCroissantElectronRouteImport } from './routes/{-$locale}/(home)/apps/croissant-electron'
 import { Route as Char123LocaleChar125homeAppsKimTheseRouteImport } from './routes/{-$locale}/(home)/apps/kim-these'
-import { Route as Char123LocaleChar125homeAppsKitronRouteImport } from './routes/{-$locale}/(home)/apps/kitron'
 import { Route as Char123LocaleChar125homeAppsLogimonsRouteImport } from './routes/{-$locale}/(home)/apps/logimons'
 import { Route as Char123LocaleChar125homeAppsOpenworldcarRouteImport } from './routes/{-$locale}/(home)/apps/openworldcar'
 import { Route as Char123LocaleChar125homeAppsPastryvitalRouteImport } from './routes/{-$locale}/(home)/apps/pastryvital'
 import { Route as Char123LocaleChar125homeAppsPuertoRouteImport } from './routes/{-$locale}/(home)/apps/puerto'
-import { Route as Char123LocaleChar125homeAppsScriptcRouteImport } from './routes/{-$locale}/(home)/apps/scriptc'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -84,12 +82,6 @@ const Char123LocaleChar125homeAppsKimTheseRoute =
     path: '/apps/kim-these',
     getParentRoute: () => Char123LocaleChar125homeRouteRoute,
   } as any)
-const Char123LocaleChar125homeAppsKitronRoute =
-  Char123LocaleChar125homeAppsKitronRouteImport.update({
-    id: '/apps/kitron',
-    path: '/apps/kitron',
-    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
-  } as any)
 const Char123LocaleChar125homeAppsLogimonsRoute =
   Char123LocaleChar125homeAppsLogimonsRouteImport.update({
     id: '/apps/logimons',
@@ -114,12 +106,6 @@ const Char123LocaleChar125homeAppsPuertoRoute =
     path: '/apps/puerto',
     getParentRoute: () => Char123LocaleChar125homeRouteRoute,
   } as any)
-const Char123LocaleChar125homeAppsScriptcRoute =
-  Char123LocaleChar125homeAppsScriptcRouteImport.update({
-    id: '/apps/scriptc',
-    path: '/apps/scriptc',
-    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -131,12 +117,10 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/': typeof Char123LocaleChar125homeIndexRoute
   '/{-$locale}/apps/croissant-electron': typeof Char123LocaleChar125homeAppsCroissantElectronRoute
   '/{-$locale}/apps/kim-these': typeof Char123LocaleChar125homeAppsKimTheseRoute
-  '/{-$locale}/apps/kitron': typeof Char123LocaleChar125homeAppsKitronRoute
   '/{-$locale}/apps/logimons': typeof Char123LocaleChar125homeAppsLogimonsRoute
   '/{-$locale}/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   '/{-$locale}/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
   '/{-$locale}/apps/puerto': typeof Char123LocaleChar125homeAppsPuertoRoute
-  '/{-$locale}/apps/scriptc': typeof Char123LocaleChar125homeAppsScriptcRoute
   '/{-$locale}/apps/': typeof Char123LocaleChar125homeAppsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -148,12 +132,10 @@ export interface FileRoutesByTo {
   '/{-$locale}': typeof Char123LocaleChar125homeIndexRoute
   '/{-$locale}/apps/croissant-electron': typeof Char123LocaleChar125homeAppsCroissantElectronRoute
   '/{-$locale}/apps/kim-these': typeof Char123LocaleChar125homeAppsKimTheseRoute
-  '/{-$locale}/apps/kitron': typeof Char123LocaleChar125homeAppsKitronRoute
   '/{-$locale}/apps/logimons': typeof Char123LocaleChar125homeAppsLogimonsRoute
   '/{-$locale}/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   '/{-$locale}/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
   '/{-$locale}/apps/puerto': typeof Char123LocaleChar125homeAppsPuertoRoute
-  '/{-$locale}/apps/scriptc': typeof Char123LocaleChar125homeAppsScriptcRoute
   '/{-$locale}/apps': typeof Char123LocaleChar125homeAppsIndexRoute
 }
 export interface FileRoutesById {
@@ -167,12 +149,10 @@ export interface FileRoutesById {
   '/{-$locale}/(home)/': typeof Char123LocaleChar125homeIndexRoute
   '/{-$locale}/(home)/apps/croissant-electron': typeof Char123LocaleChar125homeAppsCroissantElectronRoute
   '/{-$locale}/(home)/apps/kim-these': typeof Char123LocaleChar125homeAppsKimTheseRoute
-  '/{-$locale}/(home)/apps/kitron': typeof Char123LocaleChar125homeAppsKitronRoute
   '/{-$locale}/(home)/apps/logimons': typeof Char123LocaleChar125homeAppsLogimonsRoute
   '/{-$locale}/(home)/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   '/{-$locale}/(home)/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
   '/{-$locale}/(home)/apps/puerto': typeof Char123LocaleChar125homeAppsPuertoRoute
-  '/{-$locale}/(home)/apps/scriptc': typeof Char123LocaleChar125homeAppsScriptcRoute
   '/{-$locale}/(home)/apps/': typeof Char123LocaleChar125homeAppsIndexRoute
 }
 export interface FileRouteTypes {
@@ -187,12 +167,10 @@ export interface FileRouteTypes {
     | '/{-$locale}/'
     | '/{-$locale}/apps/croissant-electron'
     | '/{-$locale}/apps/kim-these'
-    | '/{-$locale}/apps/kitron'
     | '/{-$locale}/apps/logimons'
     | '/{-$locale}/apps/openworldcar'
     | '/{-$locale}/apps/pastryvital'
     | '/{-$locale}/apps/puerto'
-    | '/{-$locale}/apps/scriptc'
     | '/{-$locale}/apps/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -204,12 +182,10 @@ export interface FileRouteTypes {
     | '/{-$locale}'
     | '/{-$locale}/apps/croissant-electron'
     | '/{-$locale}/apps/kim-these'
-    | '/{-$locale}/apps/kitron'
     | '/{-$locale}/apps/logimons'
     | '/{-$locale}/apps/openworldcar'
     | '/{-$locale}/apps/pastryvital'
     | '/{-$locale}/apps/puerto'
-    | '/{-$locale}/apps/scriptc'
     | '/{-$locale}/apps'
   id:
     | '__root__'
@@ -222,12 +198,10 @@ export interface FileRouteTypes {
     | '/{-$locale}/(home)/'
     | '/{-$locale}/(home)/apps/croissant-electron'
     | '/{-$locale}/(home)/apps/kim-these'
-    | '/{-$locale}/(home)/apps/kitron'
     | '/{-$locale}/(home)/apps/logimons'
     | '/{-$locale}/(home)/apps/openworldcar'
     | '/{-$locale}/(home)/apps/pastryvital'
     | '/{-$locale}/(home)/apps/puerto'
-    | '/{-$locale}/(home)/apps/scriptc'
     | '/{-$locale}/(home)/apps/'
   fileRoutesById: FileRoutesById
 }
@@ -309,13 +283,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125homeAppsKimTheseRouteImport
       parentRoute: typeof Char123LocaleChar125homeRouteRoute
     }
-    '/{-$locale}/(home)/apps/kitron': {
-      id: '/{-$locale}/(home)/apps/kitron'
-      path: '/apps/kitron'
-      fullPath: '/{-$locale}/apps/kitron'
-      preLoaderRoute: typeof Char123LocaleChar125homeAppsKitronRouteImport
-      parentRoute: typeof Char123LocaleChar125homeRouteRoute
-    }
     '/{-$locale}/(home)/apps/logimons': {
       id: '/{-$locale}/(home)/apps/logimons'
       path: '/apps/logimons'
@@ -344,13 +311,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125homeAppsPuertoRouteImport
       parentRoute: typeof Char123LocaleChar125homeRouteRoute
     }
-    '/{-$locale}/(home)/apps/scriptc': {
-      id: '/{-$locale}/(home)/apps/scriptc'
-      path: '/apps/scriptc'
-      fullPath: '/{-$locale}/apps/scriptc'
-      preLoaderRoute: typeof Char123LocaleChar125homeAppsScriptcRouteImport
-      parentRoute: typeof Char123LocaleChar125homeRouteRoute
-    }
   }
 }
 
@@ -361,12 +321,10 @@ interface Char123LocaleChar125homeRouteRouteChildren {
   Char123LocaleChar125homeIndexRoute: typeof Char123LocaleChar125homeIndexRoute
   Char123LocaleChar125homeAppsCroissantElectronRoute: typeof Char123LocaleChar125homeAppsCroissantElectronRoute
   Char123LocaleChar125homeAppsKimTheseRoute: typeof Char123LocaleChar125homeAppsKimTheseRoute
-  Char123LocaleChar125homeAppsKitronRoute: typeof Char123LocaleChar125homeAppsKitronRoute
   Char123LocaleChar125homeAppsLogimonsRoute: typeof Char123LocaleChar125homeAppsLogimonsRoute
   Char123LocaleChar125homeAppsOpenworldcarRoute: typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   Char123LocaleChar125homeAppsPastryvitalRoute: typeof Char123LocaleChar125homeAppsPastryvitalRoute
   Char123LocaleChar125homeAppsPuertoRoute: typeof Char123LocaleChar125homeAppsPuertoRoute
-  Char123LocaleChar125homeAppsScriptcRoute: typeof Char123LocaleChar125homeAppsScriptcRoute
   Char123LocaleChar125homeAppsIndexRoute: typeof Char123LocaleChar125homeAppsIndexRoute
 }
 
@@ -380,8 +338,6 @@ const Char123LocaleChar125homeRouteRouteChildren: Char123LocaleChar125homeRouteR
       Char123LocaleChar125homeAppsCroissantElectronRoute,
     Char123LocaleChar125homeAppsKimTheseRoute:
       Char123LocaleChar125homeAppsKimTheseRoute,
-    Char123LocaleChar125homeAppsKitronRoute:
-      Char123LocaleChar125homeAppsKitronRoute,
     Char123LocaleChar125homeAppsLogimonsRoute:
       Char123LocaleChar125homeAppsLogimonsRoute,
     Char123LocaleChar125homeAppsOpenworldcarRoute:
@@ -390,8 +346,6 @@ const Char123LocaleChar125homeRouteRouteChildren: Char123LocaleChar125homeRouteR
       Char123LocaleChar125homeAppsPastryvitalRoute,
     Char123LocaleChar125homeAppsPuertoRoute:
       Char123LocaleChar125homeAppsPuertoRoute,
-    Char123LocaleChar125homeAppsScriptcRoute:
-      Char123LocaleChar125homeAppsScriptcRoute,
     Char123LocaleChar125homeAppsIndexRoute:
       Char123LocaleChar125homeAppsIndexRoute,
   }

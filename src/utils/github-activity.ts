@@ -39,7 +39,6 @@ export const TRACKED_REPOS: { repo: string; team: string }[] = [
   { repo: "croissantsam/croissant-electron", team: "croissant-electron" },
   { repo: "croissantsam/logimons", team: "logimons" },
   { repo: "croissantsam/openworldcar", team: "openworldcar" },
-  { repo: "croissantsam/scriptc", team: "scriptc" },
 ];
 
 export function formatTimeAgo(dateString: string, locale: "fr" | "en" = "fr"): string {

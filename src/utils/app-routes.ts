@@ -4,8 +4,6 @@ const appDetailPaths = {
   pastryvital: "/{-$locale}/apps/pastryvital",
   logimons: "/{-$locale}/apps/logimons",
   openworldcar: "/{-$locale}/apps/openworldcar",
-  kitron: "/{-$locale}/apps/kitron",
-  scriptc: "/{-$locale}/apps/scriptc",
   "croissant-electron": "/{-$locale}/apps/croissant-electron",
   "kim-these": "/{-$locale}/apps/kim-these",
   puerto: "/{-$locale}/apps/puerto",

@@ -76,7 +76,7 @@ const dictionaries = {
       metaDescription:
         "CroissantLabs conçoit des apps et sites web pour des équipes ambitieuses. Découvrez la suite dans un tableau de bord vivant.",
       ogDescription: "Un studio, plusieurs produits. Entrez dans le dashboard de CroissantLabs.",
-      liveStatusPrefix: "8 projets & outils · mis à jour",
+      liveStatusPrefix: "6 projets & outils · mis à jour",
       titleStart: "Un studio produit qui conçoit",
       titleAccent: "des apps qu'on aime ouvrir.",
       intro:
@@ -86,7 +86,7 @@ const dictionaries = {
       stats: [
         {
           key: "products",
-          value: "8",
+          value: "6",
           label: "projets développés",
           color: "var(--terracotta)",
         },
@@ -137,12 +137,6 @@ const dictionaries = {
           url: "https://github.com/croissantsam/openworldcar",
         },
         {
-          team: "scriptc",
-          message: "commit sur main : cross-compilation & modules WASI",
-          ago: "2 h",
-          url: "https://github.com/croissantsam/scriptc",
-        },
-        {
           team: "pastryvital",
           message: "dossier médical numérique : analyses, ordonnances & files",
           ago: "3 h",
@@ -160,11 +154,11 @@ const dictionaries = {
       metaTitle: "CroissantLabs — Apps",
       metaDescription: "Parcourez la suite produit de CroissantLabs en français.",
       eyebrow: "Catalogue produit",
-      title: "Huit projets, une même exigence.",
+      title: "Six projets, une même exigence.",
       intro:
         "Chaque produit développé au studio a sa page dédiée : ce qu'il fait, la stack utilisée et les liens pour aller plus loin. Voici la version condensée du portefeuille.",
       highlights: [
-        { key: "ship", value: "8", label: "projets développés en interne" },
+        { key: "ship", value: "6", label: "projets développés en interne" },
         { key: "platforms", value: "Multi", label: "Web, Desktop & natif" },
         { key: "craft", value: "100%", label: "design soigné & code propre" },
       ],
@@ -391,84 +385,6 @@ const dictionaries = {
         },
       },
       {
-        id: "kitron",
-        name: "Kitron",
-        kind: "Framework · Desktop",
-        tagline: "Applications desktop en TypeScript sans Chromium — Rust natif + Node.js",
-        status: "soon",
-        details: {
-          intro: [
-            "Kitron construit des applications desktop en TypeScript sur une infrastructure native : Rust possède les fenêtres, menus, tray, dialogs, raccourcis et updater (winit → AppKit / Win32). Pas de Chromium, pas de renderer web embarqué, pas de React Native.",
-            "L'UI reste du React réel, rendu par un reconciler maison avec une API compatible react-native, et Node.js fournit filesystem, réseau et crypto. Mesuré face à Electron 35 (hello-world, Apple M4) : environ 18× plus petit (13 Mo vs 246 Mo), démarrage ~15× plus rapide (25 ms vs 380 ms), ~30× moins de RAM au repos.",
-          ],
-          features: [
-            {
-              title: "Runtime natif Rust",
-              body: "kitron-runtime : fenêtres OS réelles, dispatch IPC, sidecar Node auto-démarré pour le filesystem et le réseau.",
-            },
-            {
-              title: "API TypeScript-first",
-              body: "Packages @kitron/* : window, dialog, clipboard, notification, tray, menu, shortcut, updater — derrière une facade unique.",
-            },
-            {
-              title: "React sans Chromium",
-              body: "Un reconciler maison route le React vers le renderer natif, avec une API compatible react-native.",
-            },
-            {
-              title: "Benchmarks honnêtes",
-              body: "Méthodologie et mesures publiées : taille du runtime, cold start, RAM idle — comparées à Electron 35 sur Apple M4.",
-            },
-            {
-              title: "CLI complète",
-              body: "kitron create / dev / build / package / run / doctor, avec template de projet prêt à l'emploi.",
-            },
-          ],
-          stack: ["TypeScript", "React (reconciler maison)", "Rust (winit)", "Node.js sidecar"],
-        },
-      },
-      {
-        id: "scriptc",
-        name: "scriptc",
-        kind: "Compilateur · natif & WASM",
-        tagline: "Compile TypeScript et JavaScript en exécutables natifs et WebAssembly",
-        status: "beta",
-        details: {
-          intro: [
-            "scriptc compile TypeScript et JavaScript vers des exécutables natifs et des modules WebAssembly. Le compilateur s'appuie sur les types vérifiés par le compilateur TypeScript pour générer du code machine : l'exécutable tourne sans Node.js installé.",
-            "Les packages npm importés sont compilés avec le programme — plus de node_modules à lire au runtime. Le code que scriptc ne sait pas compiler est signalé au build avec un diagnostic et, quand c'est possible, un indice de réécriture. Projet expérimental : un sous-ensemble des API JS/TS/Node est couvert.",
-          ],
-          features: [
-            {
-              title: "build & run",
-              body: "scriptc build écrit un exécutable, scriptc run compile et exécute directement — un hello world devient un binaire natif.",
-            },
-            {
-              title: "APIs Node compilées",
-              body: "Les API Node supportées compilent vers le runtime natif : un serveur HTTP complet, sans Node installé sur la machine cible.",
-            },
-            {
-              title: "Dépendances npm incluses",
-              body: "Les packages supportés sont compilés avec votre code dans l'exécutable final.",
-            },
-            {
-              title: "Rapport de coverage",
-              body: "scriptc coverage mesure, fichier par fichier, la part compilable d'une codebase existante avant migration.",
-            },
-            {
-              title: "Cross-compilation & WASM",
-              body: "Ciblage multi-plateforme, modules WASI embarquables et FFI C ABI pour les programmes natifs.",
-            },
-          ],
-          stack: [
-            "TypeScript (types tsc)",
-            "Exécutables natifs",
-            "WebAssembly / WASI",
-            "FFI C ABI",
-            "Node.js 24+",
-          ],
-        },
-      },
-      {
         id: "croissant-electron",
         name: "croissant-electron",
         kind: "Boilerplate · Desktop",
@@ -643,7 +559,7 @@ const dictionaries = {
       metaDescription:
         "CroissantLabs designs apps and websites for ambitious teams. Explore the product suite inside a lively dashboard.",
       ogDescription: "One studio, several products. Step into the CroissantLabs dashboard.",
-      liveStatusPrefix: "8 projects & tools · updated",
+      liveStatusPrefix: "6 projects & tools · updated",
       titleStart: "A product studio building",
       titleAccent: "apps people love opening.",
       intro:
@@ -653,7 +569,7 @@ const dictionaries = {
       stats: [
         {
           key: "products",
-          value: "8",
+          value: "6",
           label: "in-house projects",
           color: "var(--terracotta)",
         },
@@ -704,12 +620,6 @@ const dictionaries = {
           url: "https://github.com/croissantsam/openworldcar",
         },
         {
-          team: "scriptc",
-          message: "commit on main: cross-compilation & WASI modules",
-          ago: "2h ago",
-          url: "https://github.com/croissantsam/scriptc",
-        },
-        {
           team: "pastryvital",
           message: "medical records: lab tests, prescriptions & files",
           ago: "3h ago",
@@ -727,11 +637,11 @@ const dictionaries = {
       metaTitle: "CroissantLabs — Apps",
       metaDescription: "Browse the CroissantLabs product suite in English.",
       eyebrow: "Product catalog",
-      title: "Eight projects, one standard.",
+      title: "Six projects, one standard.",
       intro:
         "Every product built at the studio has its own page: what it does, the stack behind it, and links to learn more. Here is the compact view of the portfolio.",
       highlights: [
-        { key: "ship", value: "8", label: "in-house projects" },
+        { key: "ship", value: "6", label: "in-house projects" },
         { key: "platforms", value: "Multi", label: "Web, Desktop & native" },
         { key: "craft", value: "100%", label: "bespoke design & clean code" },
       ],
@@ -955,84 +865,6 @@ const dictionaries = {
             "Node.js (crossws)",
             "PostgreSQL + Drizzle",
             "pnpm monorepo",
-          ],
-        },
-      },
-      {
-        id: "kitron",
-        name: "Kitron",
-        kind: "Framework · Desktop",
-        tagline: "TypeScript desktop apps without Chromium — native Rust + Node.js",
-        status: "soon",
-        details: {
-          intro: [
-            "Kitron builds desktop applications in TypeScript on native infrastructure: Rust owns windows, menus, tray, dialogs, shortcuts, and the updater (winit → AppKit / Win32). No Chromium, no embedded web renderer, no React Native.",
-            "The UI stays real React, rendered through an in-house reconciler with a react-native-compatible API, while Node.js provides filesystem, network, and crypto. Benchmarked against Electron 35 (hello-world, Apple M4): ~18× smaller (13 MB vs 246 MB), ~15× faster cold start (25 ms vs 380 ms), ~30× less idle memory.",
-          ],
-          features: [
-            {
-              title: "Native Rust runtime",
-              body: "kitron-runtime: real OS windows, IPC dispatch, auto-started Node sidecar for filesystem and network.",
-            },
-            {
-              title: "TypeScript-first API",
-              body: "@kitron/* packages: window, dialog, clipboard, notification, tray, menu, shortcut, updater — behind one facade.",
-            },
-            {
-              title: "React without Chromium",
-              body: "An in-house reconciler routes React to the native renderer, with a react-native-compatible API.",
-            },
-            {
-              title: "Honest benchmarks",
-              body: "Published methodology and measurements: runtime size, cold start, idle RAM — compared against Electron 35 on Apple M4.",
-            },
-            {
-              title: "Complete CLI",
-              body: "kitron create / dev / build / package / run / doctor, with a ready-to-use project template.",
-            },
-          ],
-          stack: ["TypeScript", "React (own reconciler)", "Rust (winit)", "Node.js sidecar"],
-        },
-      },
-      {
-        id: "scriptc",
-        name: "scriptc",
-        kind: "Compiler · native & WASM",
-        tagline: "Compiles TypeScript and JavaScript to native executables and WebAssembly",
-        status: "beta",
-        details: {
-          intro: [
-            "scriptc compiles TypeScript and JavaScript to native executables and WebAssembly modules. The compiler relies on the types checked by the TypeScript compiler to generate machine code: the output runs without Node.js installed.",
-            "Packages your program imports compile along with it — no node_modules read at runtime. Code scriptc cannot compile is reported at build time with a diagnostic and, where available, a rewrite hint. Experimental project: a subset of the JS/TS/Node surface is covered.",
-          ],
-          features: [
-            {
-              title: "build & run",
-              body: "scriptc build writes an executable, scriptc run compiles and executes directly — a hello world becomes a native binary.",
-            },
-            {
-              title: "Node APIs compiled",
-              body: "Supported Node APIs compile to the native runtime: a full HTTP server, without Node installed on the target machine.",
-            },
-            {
-              title: "npm deps bundled in",
-              body: "Supported packages are compiled together with your code into the final executable.",
-            },
-            {
-              title: "Coverage report",
-              body: "scriptc coverage measures, file by file, how much of an existing codebase compiles before migrating.",
-            },
-            {
-              title: "Cross-compilation & WASM",
-              body: "Multi-platform targeting, embeddable WASI modules, and C ABI FFI for native programs.",
-            },
-          ],
-          stack: [
-            "TypeScript (tsc types)",
-            "Native executables",
-            "WebAssembly / WASI",
-            "C ABI FFI",
-            "Node.js 24+",
           ],
         },
       },

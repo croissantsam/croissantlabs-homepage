@@ -1,11 +1,9 @@
 import {
   AppWindow,
-  Binary,
   Building2,
   Car,
   GraduationCap,
   Heart,
-  Laptop,
   Plug,
   Sparkles,
   type LucideIcon,
@@ -54,20 +52,6 @@ export const apps: App[] = [
     tint: "oklch(0.68 0.14 25)",
     repo: "croissantsam/openworldcar",
     links: [{ kind: "repo", href: "https://github.com/croissantsam/openworldcar" }],
-  },
-  {
-    id: "kitron",
-    icon: Laptop,
-    tint: "oklch(0.6 0.12 165)",
-    repo: "croissantsam/kitron",
-    links: [{ kind: "repo", href: "https://github.com/croissantsam/kitron" }],
-  },
-  {
-    id: "scriptc",
-    icon: Binary,
-    tint: "oklch(0.62 0.13 200)",
-    repo: "croissantsam/scriptc",
-    links: [{ kind: "repo", href: "https://github.com/croissantsam/scriptc" }],
   },
   {
     id: "croissant-electron",
