@@ -6,6 +6,7 @@ import {
   GraduationCap,
   Heart,
   Laptop,
+  Plug,
   Sparkles,
   type LucideIcon,
 } from "lucide-react";
@@ -84,6 +85,13 @@ export const apps: App[] = [
     tint: "oklch(0.68 0.14 300)",
     repo: "croissantsam/kim-these",
     links: [{ kind: "repo", href: "https://github.com/croissantsam/kim-these" }],
+  },
+  {
+    id: "puerto",
+    icon: Plug,
+    tint: "oklch(0.62 0.13 195)",
+    repo: "croissantsam/puerto",
+    links: [{ kind: "repo", href: "https://github.com/croissantsam/puerto" }],
   },
 ];
 

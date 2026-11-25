@@ -8,6 +8,7 @@ const appDetailPaths = {
   scriptc: "/{-$locale}/apps/scriptc",
   "croissant-electron": "/{-$locale}/apps/croissant-electron",
   "kim-these": "/{-$locale}/apps/kim-these",
+  puerto: "/{-$locale}/apps/puerto",
 } as const;
 
 export type AppDetailPath = (typeof appDetailPaths)[AppId];

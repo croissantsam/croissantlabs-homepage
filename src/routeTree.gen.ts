@@ -23,6 +23,7 @@ import { Route as Char123LocaleChar125homeAppsKitronRouteImport } from './routes
 import { Route as Char123LocaleChar125homeAppsLogimonsRouteImport } from './routes/{-$locale}/(home)/apps/logimons'
 import { Route as Char123LocaleChar125homeAppsOpenworldcarRouteImport } from './routes/{-$locale}/(home)/apps/openworldcar'
 import { Route as Char123LocaleChar125homeAppsPastryvitalRouteImport } from './routes/{-$locale}/(home)/apps/pastryvital'
+import { Route as Char123LocaleChar125homeAppsPuertoRouteImport } from './routes/{-$locale}/(home)/apps/puerto'
 import { Route as Char123LocaleChar125homeAppsScriptcRouteImport } from './routes/{-$locale}/(home)/apps/scriptc'
 
 const IndexRoute = IndexRouteImport.update({
@@ -107,6 +108,12 @@ const Char123LocaleChar125homeAppsPastryvitalRoute =
     path: '/apps/pastryvital',
     getParentRoute: () => Char123LocaleChar125homeRouteRoute,
   } as any)
+const Char123LocaleChar125homeAppsPuertoRoute =
+  Char123LocaleChar125homeAppsPuertoRouteImport.update({
+    id: '/apps/puerto',
+    path: '/apps/puerto',
+    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
+  } as any)
 const Char123LocaleChar125homeAppsScriptcRoute =
   Char123LocaleChar125homeAppsScriptcRouteImport.update({
     id: '/apps/scriptc',
@@ -128,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/apps/logimons': typeof Char123LocaleChar125homeAppsLogimonsRoute
   '/{-$locale}/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   '/{-$locale}/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
+  '/{-$locale}/apps/puerto': typeof Char123LocaleChar125homeAppsPuertoRoute
   '/{-$locale}/apps/scriptc': typeof Char123LocaleChar125homeAppsScriptcRoute
   '/{-$locale}/apps/': typeof Char123LocaleChar125homeAppsIndexRoute
 }
@@ -144,6 +152,7 @@ export interface FileRoutesByTo {
   '/{-$locale}/apps/logimons': typeof Char123LocaleChar125homeAppsLogimonsRoute
   '/{-$locale}/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   '/{-$locale}/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
+  '/{-$locale}/apps/puerto': typeof Char123LocaleChar125homeAppsPuertoRoute
   '/{-$locale}/apps/scriptc': typeof Char123LocaleChar125homeAppsScriptcRoute
   '/{-$locale}/apps': typeof Char123LocaleChar125homeAppsIndexRoute
 }
@@ -162,6 +171,7 @@ export interface FileRoutesById {
   '/{-$locale}/(home)/apps/logimons': typeof Char123LocaleChar125homeAppsLogimonsRoute
   '/{-$locale}/(home)/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   '/{-$locale}/(home)/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
+  '/{-$locale}/(home)/apps/puerto': typeof Char123LocaleChar125homeAppsPuertoRoute
   '/{-$locale}/(home)/apps/scriptc': typeof Char123LocaleChar125homeAppsScriptcRoute
   '/{-$locale}/(home)/apps/': typeof Char123LocaleChar125homeAppsIndexRoute
 }
@@ -181,6 +191,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/apps/logimons'
     | '/{-$locale}/apps/openworldcar'
     | '/{-$locale}/apps/pastryvital'
+    | '/{-$locale}/apps/puerto'
     | '/{-$locale}/apps/scriptc'
     | '/{-$locale}/apps/'
   fileRoutesByTo: FileRoutesByTo
@@ -197,6 +208,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/apps/logimons'
     | '/{-$locale}/apps/openworldcar'
     | '/{-$locale}/apps/pastryvital'
+    | '/{-$locale}/apps/puerto'
     | '/{-$locale}/apps/scriptc'
     | '/{-$locale}/apps'
   id:
@@ -214,6 +226,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/(home)/apps/logimons'
     | '/{-$locale}/(home)/apps/openworldcar'
     | '/{-$locale}/(home)/apps/pastryvital'
+    | '/{-$locale}/(home)/apps/puerto'
     | '/{-$locale}/(home)/apps/scriptc'
     | '/{-$locale}/(home)/apps/'
   fileRoutesById: FileRoutesById
@@ -324,6 +337,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125homeAppsPastryvitalRouteImport
       parentRoute: typeof Char123LocaleChar125homeRouteRoute
     }
+    '/{-$locale}/(home)/apps/puerto': {
+      id: '/{-$locale}/(home)/apps/puerto'
+      path: '/apps/puerto'
+      fullPath: '/{-$locale}/apps/puerto'
+      preLoaderRoute: typeof Char123LocaleChar125homeAppsPuertoRouteImport
+      parentRoute: typeof Char123LocaleChar125homeRouteRoute
+    }
     '/{-$locale}/(home)/apps/scriptc': {
       id: '/{-$locale}/(home)/apps/scriptc'
       path: '/apps/scriptc'
@@ -345,6 +365,7 @@ interface Char123LocaleChar125homeRouteRouteChildren {
   Char123LocaleChar125homeAppsLogimonsRoute: typeof Char123LocaleChar125homeAppsLogimonsRoute
   Char123LocaleChar125homeAppsOpenworldcarRoute: typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   Char123LocaleChar125homeAppsPastryvitalRoute: typeof Char123LocaleChar125homeAppsPastryvitalRoute
+  Char123LocaleChar125homeAppsPuertoRoute: typeof Char123LocaleChar125homeAppsPuertoRoute
   Char123LocaleChar125homeAppsScriptcRoute: typeof Char123LocaleChar125homeAppsScriptcRoute
   Char123LocaleChar125homeAppsIndexRoute: typeof Char123LocaleChar125homeAppsIndexRoute
 }
@@ -367,6 +388,8 @@ const Char123LocaleChar125homeRouteRouteChildren: Char123LocaleChar125homeRouteR
       Char123LocaleChar125homeAppsOpenworldcarRoute,
     Char123LocaleChar125homeAppsPastryvitalRoute:
       Char123LocaleChar125homeAppsPastryvitalRoute,
+    Char123LocaleChar125homeAppsPuertoRoute:
+      Char123LocaleChar125homeAppsPuertoRoute,
     Char123LocaleChar125homeAppsScriptcRoute:
       Char123LocaleChar125homeAppsScriptcRoute,
     Char123LocaleChar125homeAppsIndexRoute:
@@ -387,12 +410,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

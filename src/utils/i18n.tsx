@@ -76,7 +76,7 @@ const dictionaries = {
       metaDescription:
         "CroissantLabs conçoit des apps et sites web pour des équipes ambitieuses. Découvrez la suite dans un tableau de bord vivant.",
       ogDescription: "Un studio, plusieurs produits. Entrez dans le dashboard de CroissantLabs.",
-      liveStatusPrefix: "7 projets & outils · mis à jour",
+      liveStatusPrefix: "8 projets & outils · mis à jour",
       titleStart: "Un studio produit qui conçoit",
       titleAccent: "des apps qu'on aime ouvrir.",
       intro:
@@ -86,7 +86,7 @@ const dictionaries = {
       stats: [
         {
           key: "products",
-          value: "7",
+          value: "8",
           label: "projets développés",
           color: "var(--terracotta)",
         },
@@ -160,11 +160,11 @@ const dictionaries = {
       metaTitle: "CroissantLabs — Apps",
       metaDescription: "Parcourez la suite produit de CroissantLabs en français.",
       eyebrow: "Catalogue produit",
-      title: "Sept projets, une même exigence.",
+      title: "Huit projets, une même exigence.",
       intro:
         "Chaque produit développé au studio a sa page dédiée : ce qu'il fait, la stack utilisée et les liens pour aller plus loin. Voici la version condensée du portefeuille.",
       highlights: [
-        { key: "ship", value: "7", label: "projets développés en interne" },
+        { key: "ship", value: "8", label: "projets développés en interne" },
         { key: "platforms", value: "Multi", label: "Web, Desktop & natif" },
         { key: "craft", value: "100%", label: "design soigné & code propre" },
       ],
@@ -548,6 +548,46 @@ const dictionaries = {
           stack: ["TanStack Start", "React", "CSS 3D", "Vite"],
         },
       },
+      {
+        id: "puerto",
+        name: "Puerto",
+        kind: "Barre de menus · macOS",
+        tagline: "Voir et fermer vos ports TCP ouverts depuis la barre de menus macOS",
+        status: "live",
+        details: {
+          intro: [
+            "Puerto est une app de barre de menus macOS qui affiche vos ports TCP en écoute et permet de les fermer d'un clic. Une icône monochrome en forme de prise indique le nombre de ports ouverts et s'adapte automatiquement au thème clair ou sombre de la barre.",
+            "Puerto ne touche qu'à vos propres processus : il filtre les daemons système Apple, n'interagit jamais avec les ports appartenant à d'autres utilisateurs, et ferme proprement via SIGTERM avant d'escalader en SIGKILL si le processus tient toujours le port.",
+          ],
+          features: [
+            {
+              title: "Icône de barre de menus",
+              body: "Une icône template monochrome avec le nombre de ports ouverts, qui bascule entre noir et blanc selon la barre.",
+            },
+            {
+              title: "Fermeture en un clic",
+              body: "Chaque port s'affiche en sous-menu avec une action ✕ Close pour libérer le port immédiatement.",
+            },
+            {
+              title: "Auto-rafraîchissement",
+              body: "Le menu se met à jour à chaque ouverture ; un minuteur en arrière-plan actualise le compteur toutes les 2 s.",
+            },
+            {
+              title: "Fermeture sûre",
+              body: "SIGTERM, attente de 2 s pour un arrêt propre, puis SIGKILL si le même processus possède toujours le port.",
+            },
+            {
+              title: "Lancement au démarrage",
+              body: "Bascule menu-bar pour enregistrer Puerto comme élément de connexion (macOS 13+).",
+            },
+            {
+              title: "Mises à jour intégrées",
+              body: "Vérifie GitHub au lancement et demande avant d'installer : rien n'est téléchargé sans votre accord.",
+            },
+          ],
+          stack: ["Swift", "SwiftUI/AppKit", "lsof", "SMAppService", "macOS 12+"],
+        },
+      },
     ],
   },
   en: {
@@ -603,7 +643,7 @@ const dictionaries = {
       metaDescription:
         "CroissantLabs designs apps and websites for ambitious teams. Explore the product suite inside a lively dashboard.",
       ogDescription: "One studio, several products. Step into the CroissantLabs dashboard.",
-      liveStatusPrefix: "7 projects & tools · updated",
+      liveStatusPrefix: "8 projects & tools · updated",
       titleStart: "A product studio building",
       titleAccent: "apps people love opening.",
       intro:
@@ -613,7 +653,7 @@ const dictionaries = {
       stats: [
         {
           key: "products",
-          value: "7",
+          value: "8",
           label: "in-house projects",
           color: "var(--terracotta)",
         },
@@ -687,11 +727,11 @@ const dictionaries = {
       metaTitle: "CroissantLabs — Apps",
       metaDescription: "Browse the CroissantLabs product suite in English.",
       eyebrow: "Product catalog",
-      title: "Seven projects, one standard.",
+      title: "Eight projects, one standard.",
       intro:
         "Every product built at the studio has its own page: what it does, the stack behind it, and links to learn more. Here is the compact view of the portfolio.",
       highlights: [
-        { key: "ship", value: "7", label: "in-house projects" },
+        { key: "ship", value: "8", label: "in-house projects" },
         { key: "platforms", value: "Multi", label: "Web, Desktop & native" },
         { key: "craft", value: "100%", label: "bespoke design & clean code" },
       ],
@@ -1073,6 +1113,46 @@ const dictionaries = {
             },
           ],
           stack: ["TanStack Start", "React", "CSS 3D", "Vite"],
+        },
+      },
+      {
+        id: "puerto",
+        name: "Puerto",
+        kind: "Menu bar · macOS",
+        tagline: "See and close your open TCP ports right from the macOS menu bar",
+        status: "live",
+        details: {
+          intro: [
+            "Puerto is a macOS menu bar app that shows your listening TCP ports and lets you close them with a click. A monochrome plug glyph shows the count of open ports and automatically flips between black and white to match the menu bar.",
+            "Puerto only ever touches your own processes: it filters Apple system daemons, never interacts with ports owned by other users, and closes cleanly via SIGTERM before escalating to SIGKILL if the process still holds the port.",
+          ],
+          features: [
+            {
+              title: "Menu bar icon",
+              body: "A monochrome template glyph with the open-port count that flips between black and white to match the menu bar.",
+            },
+            {
+              title: "One-click close",
+              body: "Each port shows as a submenu with a ✕ Close action to free the port immediately.",
+            },
+            {
+              title: "Auto-refresh",
+              body: "The menu updates every time you open it; a background timer refreshes the count every 2s.",
+            },
+            {
+              title: "Safe close",
+              body: "SIGTERM, a 2s wait for a clean shutdown, then SIGKILL if the same process still owns the port.",
+            },
+            {
+              title: "Launch at Login",
+              body: "Menu-bar toggle that registers Puerto as a login item (macOS 13+).",
+            },
+            {
+              title: "In-app updates",
+              body: "Checks GitHub at launch and asks before installing: nothing is downloaded without your say-so.",
+            },
+          ],
+          stack: ["Swift", "SwiftUI/AppKit", "lsof", "SMAppService", "macOS 12+"],
         },
       },
     ],
