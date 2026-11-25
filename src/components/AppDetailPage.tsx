@@ -134,7 +134,7 @@ function AppDetailPage({ appId, commits }: { appId: AppId; commits?: AppCommit[]
                   >
                     <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: tint }} />
                     <span className="shrink-0 font-mono text-[11px] opacity-70">{commit.sha}</span>
-                    <span className="text-muted-foreground group-hover:text-foreground truncate transition-colors">
+                    <span className="text-muted-foreground group-hover:text-foreground min-w-0 flex-1 truncate transition-colors">
                       {commit.message}
                     </span>
                     <span className="text-muted-foreground ml-auto flex shrink-0 items-center gap-1 text-[11px]">
