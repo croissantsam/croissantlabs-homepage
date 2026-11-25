@@ -24,6 +24,7 @@ import { Route as Char123LocaleChar125homeAppsLogimonsRouteImport } from './rout
 import { Route as Char123LocaleChar125homeAppsOpenworldcarRouteImport } from './routes/{-$locale}/(home)/apps/openworldcar'
 import { Route as Char123LocaleChar125homeAppsPastryvitalRouteImport } from './routes/{-$locale}/(home)/apps/pastryvital'
 import { Route as Char123LocaleChar125homeAppsPuertoRouteImport } from './routes/{-$locale}/(home)/apps/puerto'
+import { Route as Char123LocaleChar125homeAppsTokyoTsRouteImport } from './routes/{-$locale}/(home)/apps/tokyo-ts'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -113,6 +114,12 @@ const Char123LocaleChar125homeAppsPuertoRoute =
     path: '/apps/puerto',
     getParentRoute: () => Char123LocaleChar125homeRouteRoute,
   } as any)
+const Char123LocaleChar125homeAppsTokyoTsRoute =
+  Char123LocaleChar125homeAppsTokyoTsRouteImport.update({
+    id: '/apps/tokyo-ts',
+    path: '/apps/tokyo-ts',
+    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -129,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   '/{-$locale}/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
   '/{-$locale}/apps/puerto': typeof Char123LocaleChar125homeAppsPuertoRoute
+  '/{-$locale}/apps/tokyo-ts': typeof Char123LocaleChar125homeAppsTokyoTsRoute
   '/{-$locale}/apps/': typeof Char123LocaleChar125homeAppsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -145,6 +153,7 @@ export interface FileRoutesByTo {
   '/{-$locale}/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   '/{-$locale}/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
   '/{-$locale}/apps/puerto': typeof Char123LocaleChar125homeAppsPuertoRoute
+  '/{-$locale}/apps/tokyo-ts': typeof Char123LocaleChar125homeAppsTokyoTsRoute
   '/{-$locale}/apps': typeof Char123LocaleChar125homeAppsIndexRoute
 }
 export interface FileRoutesById {
@@ -163,6 +172,7 @@ export interface FileRoutesById {
   '/{-$locale}/(home)/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   '/{-$locale}/(home)/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
   '/{-$locale}/(home)/apps/puerto': typeof Char123LocaleChar125homeAppsPuertoRoute
+  '/{-$locale}/(home)/apps/tokyo-ts': typeof Char123LocaleChar125homeAppsTokyoTsRoute
   '/{-$locale}/(home)/apps/': typeof Char123LocaleChar125homeAppsIndexRoute
 }
 export interface FileRouteTypes {
@@ -182,6 +192,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/apps/openworldcar'
     | '/{-$locale}/apps/pastryvital'
     | '/{-$locale}/apps/puerto'
+    | '/{-$locale}/apps/tokyo-ts'
     | '/{-$locale}/apps/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -198,6 +209,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/apps/openworldcar'
     | '/{-$locale}/apps/pastryvital'
     | '/{-$locale}/apps/puerto'
+    | '/{-$locale}/apps/tokyo-ts'
     | '/{-$locale}/apps'
   id:
     | '__root__'
@@ -215,6 +227,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/(home)/apps/openworldcar'
     | '/{-$locale}/(home)/apps/pastryvital'
     | '/{-$locale}/(home)/apps/puerto'
+    | '/{-$locale}/(home)/apps/tokyo-ts'
     | '/{-$locale}/(home)/apps/'
   fileRoutesById: FileRoutesById
 }
@@ -331,6 +344,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125homeAppsPuertoRouteImport
       parentRoute: typeof Char123LocaleChar125homeRouteRoute
     }
+    '/{-$locale}/(home)/apps/tokyo-ts': {
+      id: '/{-$locale}/(home)/apps/tokyo-ts'
+      path: '/apps/tokyo-ts'
+      fullPath: '/{-$locale}/apps/tokyo-ts'
+      preLoaderRoute: typeof Char123LocaleChar125homeAppsTokyoTsRouteImport
+      parentRoute: typeof Char123LocaleChar125homeRouteRoute
+    }
   }
 }
 
@@ -346,6 +366,7 @@ interface Char123LocaleChar125homeRouteRouteChildren {
   Char123LocaleChar125homeAppsOpenworldcarRoute: typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   Char123LocaleChar125homeAppsPastryvitalRoute: typeof Char123LocaleChar125homeAppsPastryvitalRoute
   Char123LocaleChar125homeAppsPuertoRoute: typeof Char123LocaleChar125homeAppsPuertoRoute
+  Char123LocaleChar125homeAppsTokyoTsRoute: typeof Char123LocaleChar125homeAppsTokyoTsRoute
   Char123LocaleChar125homeAppsIndexRoute: typeof Char123LocaleChar125homeAppsIndexRoute
 }
 
@@ -369,6 +390,8 @@ const Char123LocaleChar125homeRouteRouteChildren: Char123LocaleChar125homeRouteR
       Char123LocaleChar125homeAppsPastryvitalRoute,
     Char123LocaleChar125homeAppsPuertoRoute:
       Char123LocaleChar125homeAppsPuertoRoute,
+    Char123LocaleChar125homeAppsTokyoTsRoute:
+      Char123LocaleChar125homeAppsTokyoTsRoute,
     Char123LocaleChar125homeAppsIndexRoute:
       Char123LocaleChar125homeAppsIndexRoute,
   }

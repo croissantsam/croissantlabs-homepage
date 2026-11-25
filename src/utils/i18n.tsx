@@ -76,7 +76,7 @@ const dictionaries = {
       metaDescription:
         "CroissantLabs conçoit des apps et sites web pour des équipes ambitieuses. Découvrez la suite dans un tableau de bord vivant.",
       ogDescription: "Un studio, plusieurs produits. Entrez dans le dashboard de CroissantLabs.",
-      liveStatusPrefix: "7 projets & outils · mis à jour",
+      liveStatusPrefix: "8 projets & outils · mis à jour",
       titleStart: "Un studio produit qui conçoit",
       titleAccent: "des apps qu'on aime ouvrir.",
       intro:
@@ -86,7 +86,7 @@ const dictionaries = {
       stats: [
         {
           key: "products",
-          value: "7",
+          value: "8",
           label: "projets développés",
           color: "var(--terracotta)",
         },
@@ -154,11 +154,11 @@ const dictionaries = {
       metaTitle: "CroissantLabs — Apps",
       metaDescription: "Parcourez la suite produit de CroissantLabs en français.",
       eyebrow: "Catalogue produit",
-      title: "Sept projets, une même exigence.",
+      title: "Huit projets, une même exigence.",
       intro:
         "Chaque produit développé au studio a sa page dédiée : ce qu'il fait, la stack utilisée et les liens pour aller plus loin. Voici la version condensée du portefeuille.",
       highlights: [
-        { key: "ship", value: "7", label: "projets développés en interne" },
+        { key: "ship", value: "8", label: "projets développés en interne" },
         { key: "platforms", value: "Multi", label: "Web, Desktop & natif" },
         { key: "craft", value: "100%", label: "design soigné & code propre" },
       ],
@@ -544,6 +544,46 @@ const dictionaries = {
           stack: ["TypeScript", "GGUF", "Node.js", "ScriptC", "Kernels quantifiés Q4/Q8"],
         },
       },
+      {
+        id: "tokyo-ts",
+        name: "tokyo-ts",
+        kind: "Monde 3D · TypeScript",
+        tagline: "Tokyo 3D temps réel dans le navigateur, entièrement reconstruit en TypeScript",
+        status: "beta",
+        details: {
+          intro: [
+            "tokyo-ts est une reconstruction TypeScript complète du projet original Procedural Tokyo (jeantimex) : tout le code — le client navigateur (src/) comme le pipeline hors-ligne (tools/) — a été porté de JavaScript vers TypeScript, avec un typage strict (tsc --noEmit) et des sources .ts partout.",
+            "Le rendu est inchangé : bâtiments, routes et terrain proviennent des données publiques réelles (Project PLATEAU, OpenStreetMap, modèle d'élévation GSI), et tout ce que la donnée ne porte pas est généré — façades, fenêtres, mobilier urbain, marquage routier, trafic, éclairage de nuit, eau et météo.",
+          ],
+          features: [
+            {
+              title: "Données urbaines réelles",
+              body: "Emprises et hauteurs de bâtiments, réseau routier, voies ferrées et terrain issus de PLATEAU, OpenStreetMap et du modèle d'élévation GSI.",
+            },
+            {
+              title: "Détail procédural",
+              body: "Façades texturées par usage, fenêtres ajustées par mur, mobilier urbain, marquage routier, panneaux et néons inventés.",
+            },
+            {
+              title: "Trafic & trains",
+              body: "Voitures sur le vrai graphe routier (sens de conduite, feux, sens uniques) et trains sur les lignes réelles.",
+            },
+            {
+              title: "Heure & nuit",
+              body: "Soleil, lune, ciel, ombres et exposition pilotés par l'heure ; fenêtres allumées, néons et éclairage de nuit.",
+            },
+            {
+              title: "Eau & reflets",
+              body: "Rivières, douves et bassins en miroir, reflets d'écran sur le verre, atmosphère et nuages volumétriques.",
+            },
+            {
+              title: "Reconstruction TypeScript",
+              body: "Portage intégral en TypeScript du client et du pipeline, vérifié par tsc --noEmit, sans changer le résultat rendu.",
+            },
+          ],
+          stack: ["TypeScript", "three.js", "WebGL", "Vite", "Project PLATEAU", "OpenStreetMap"],
+        },
+      },
     ],
   },
   en: {
@@ -599,7 +639,7 @@ const dictionaries = {
       metaDescription:
         "CroissantLabs designs apps and websites for ambitious teams. Explore the product suite inside a lively dashboard.",
       ogDescription: "One studio, several products. Step into the CroissantLabs dashboard.",
-      liveStatusPrefix: "7 projects & tools · updated",
+      liveStatusPrefix: "8 projects & tools · updated",
       titleStart: "A product studio building",
       titleAccent: "apps people love opening.",
       intro:
@@ -609,7 +649,7 @@ const dictionaries = {
       stats: [
         {
           key: "products",
-          value: "7",
+          value: "8",
           label: "in-house projects",
           color: "var(--terracotta)",
         },
@@ -677,11 +717,11 @@ const dictionaries = {
       metaTitle: "CroissantLabs — Apps",
       metaDescription: "Browse the CroissantLabs product suite in English.",
       eyebrow: "Product catalog",
-      title: "Seven projects, one standard.",
+      title: "Eight projects, one standard.",
       intro:
         "Every product built at the studio has its own page: what it does, the stack behind it, and links to learn more. Here is the compact view of the portfolio.",
       highlights: [
-        { key: "ship", value: "7", label: "in-house projects" },
+        { key: "ship", value: "8", label: "in-house projects" },
         { key: "platforms", value: "Multi", label: "Web, Desktop & native" },
         { key: "craft", value: "100%", label: "bespoke design & clean code" },
       ],
@@ -1065,6 +1105,46 @@ const dictionaries = {
             },
           ],
           stack: ["TypeScript", "GGUF", "Node.js", "ScriptC", "Quantized Q4/Q8 kernels"],
+        },
+      },
+      {
+        id: "tokyo-ts",
+        name: "tokyo-ts",
+        kind: "3D world · TypeScript",
+        tagline: "Real-time 3D Tokyo in the browser, fully rebuilt in TypeScript",
+        status: "beta",
+        details: {
+          intro: [
+            "tokyo-ts is a complete TypeScript rebuild of the original Procedural Tokyo project (jeantimex): the whole codebase — both the browser client (src/) and the offline pipeline (tools/) — has been ported from JavaScript to TypeScript, with strict type-checking (tsc --noEmit) and .ts sources throughout.",
+            "The result is unchanged: buildings, roads and terrain come from real public data (Project PLATEAU, OpenStreetMap, the GSI elevation model), and everything the data does not carry is generated — facades, windows, street furniture, road paint, traffic, night lighting, water and weather.",
+          ],
+          features: [
+            {
+              title: "Real city data",
+              body: "Building footprints and heights, road network, railways and terrain from PLATEAU, OpenStreetMap and the GSI elevation model.",
+            },
+            {
+              title: "Procedural detail",
+              body: "Facades textured by use, windows fitted per wall, street furniture, road paint, signs and invented neon.",
+            },
+            {
+              title: "Traffic & trains",
+              body: "Cars on the real road graph (keep-left, signals, one-way streets) and trains on the real railway lines.",
+            },
+            {
+              title: "Time of day & night",
+              body: "Sun, moon, sky, shadows and exposure driven by the hour; lit windows, neon and night lighting.",
+            },
+            {
+              title: "Water & reflections",
+              body: "Mirror rivers, moats and ponds, screen-space glass reflections, atmosphere and volumetric clouds.",
+            },
+            {
+              title: "TypeScript rebuild",
+              body: "Full TypeScript port of both client and pipeline, verified with tsc --noEmit, without changing the rendered result.",
+            },
+          ],
+          stack: ["TypeScript", "three.js", "WebGL", "Vite", "Project PLATEAU", "OpenStreetMap"],
         },
       },
     ],

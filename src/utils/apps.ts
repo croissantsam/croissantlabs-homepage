@@ -1,5 +1,6 @@
 import {
   AppWindow,
+  Blocks,
   BrainCircuit,
   Building2,
   Car,
@@ -84,6 +85,13 @@ export const apps: App[] = [
     tint: "oklch(0.64 0.14 280)",
     repo: "croissantsam/llama.ts",
     links: [{ kind: "repo", href: "https://github.com/croissantsam/llama.ts" }],
+  },
+  {
+    id: "tokyo-ts",
+    icon: Blocks,
+    tint: "oklch(0.64 0.15 330)",
+    repo: "croissantsam/tokyo-ts",
+    links: [{ kind: "repo", href: "https://github.com/croissantsam/tokyo-ts" }],
   },
 ];
 
