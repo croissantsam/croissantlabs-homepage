@@ -15,7 +15,7 @@ function RouteComponent() {
     <I18nProvider locale={locale}>
       <SidebarProvider>
         <AppSidebar />
-        <main className="flex min-h-screen flex-col gap-5 p-3 md:p-5">
+        <main className="flex min-h-screen min-w-0 flex-1 flex-col gap-5 p-3 md:p-5">
           <Header />
           <Outlet />
         </main>
