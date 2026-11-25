@@ -1,5 +1,6 @@
 import { Link, useLocation, useMatches } from "@tanstack/react-router";
 import { Croissant, Languages } from "lucide-react";
+import { ModeToggle } from "@/components/mode-toggle";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -81,6 +82,8 @@ export const Header = () => {
       </div>
 
       <div className="ml-auto hidden max-w-md flex-1 items-center gap-2 md:flex" />
+
+      <ModeToggle />
 
       <div className="items-center gap-1 rounded-xl p-1">
         <a
