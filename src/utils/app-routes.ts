@@ -7,6 +7,7 @@ const appDetailPaths = {
   "croissant-electron": "/{-$locale}/apps/croissant-electron",
   "kim-these": "/{-$locale}/apps/kim-these",
   puerto: "/{-$locale}/apps/puerto",
+  "llama-ts": "/{-$locale}/apps/llama-ts",
 } as const;
 
 export type AppDetailPath = (typeof appDetailPaths)[AppId];

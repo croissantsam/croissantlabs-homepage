@@ -19,6 +19,7 @@ import { Route as Char123LocaleChar125homeStackRouteImport } from './routes/{-$l
 import { Route as Char123LocaleChar125homeAppsIndexRouteImport } from './routes/{-$locale}/(home)/apps/index'
 import { Route as Char123LocaleChar125homeAppsCroissantElectronRouteImport } from './routes/{-$locale}/(home)/apps/croissant-electron'
 import { Route as Char123LocaleChar125homeAppsKimTheseRouteImport } from './routes/{-$locale}/(home)/apps/kim-these'
+import { Route as Char123LocaleChar125homeAppsLlamaTsRouteImport } from './routes/{-$locale}/(home)/apps/llama-ts'
 import { Route as Char123LocaleChar125homeAppsLogimonsRouteImport } from './routes/{-$locale}/(home)/apps/logimons'
 import { Route as Char123LocaleChar125homeAppsOpenworldcarRouteImport } from './routes/{-$locale}/(home)/apps/openworldcar'
 import { Route as Char123LocaleChar125homeAppsPastryvitalRouteImport } from './routes/{-$locale}/(home)/apps/pastryvital'
@@ -82,6 +83,12 @@ const Char123LocaleChar125homeAppsKimTheseRoute =
     path: '/apps/kim-these',
     getParentRoute: () => Char123LocaleChar125homeRouteRoute,
   } as any)
+const Char123LocaleChar125homeAppsLlamaTsRoute =
+  Char123LocaleChar125homeAppsLlamaTsRouteImport.update({
+    id: '/apps/llama-ts',
+    path: '/apps/llama-ts',
+    getParentRoute: () => Char123LocaleChar125homeRouteRoute,
+  } as any)
 const Char123LocaleChar125homeAppsLogimonsRoute =
   Char123LocaleChar125homeAppsLogimonsRouteImport.update({
     id: '/apps/logimons',
@@ -117,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/': typeof Char123LocaleChar125homeIndexRoute
   '/{-$locale}/apps/croissant-electron': typeof Char123LocaleChar125homeAppsCroissantElectronRoute
   '/{-$locale}/apps/kim-these': typeof Char123LocaleChar125homeAppsKimTheseRoute
+  '/{-$locale}/apps/llama-ts': typeof Char123LocaleChar125homeAppsLlamaTsRoute
   '/{-$locale}/apps/logimons': typeof Char123LocaleChar125homeAppsLogimonsRoute
   '/{-$locale}/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   '/{-$locale}/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
@@ -132,6 +140,7 @@ export interface FileRoutesByTo {
   '/{-$locale}': typeof Char123LocaleChar125homeIndexRoute
   '/{-$locale}/apps/croissant-electron': typeof Char123LocaleChar125homeAppsCroissantElectronRoute
   '/{-$locale}/apps/kim-these': typeof Char123LocaleChar125homeAppsKimTheseRoute
+  '/{-$locale}/apps/llama-ts': typeof Char123LocaleChar125homeAppsLlamaTsRoute
   '/{-$locale}/apps/logimons': typeof Char123LocaleChar125homeAppsLogimonsRoute
   '/{-$locale}/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   '/{-$locale}/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
@@ -149,6 +158,7 @@ export interface FileRoutesById {
   '/{-$locale}/(home)/': typeof Char123LocaleChar125homeIndexRoute
   '/{-$locale}/(home)/apps/croissant-electron': typeof Char123LocaleChar125homeAppsCroissantElectronRoute
   '/{-$locale}/(home)/apps/kim-these': typeof Char123LocaleChar125homeAppsKimTheseRoute
+  '/{-$locale}/(home)/apps/llama-ts': typeof Char123LocaleChar125homeAppsLlamaTsRoute
   '/{-$locale}/(home)/apps/logimons': typeof Char123LocaleChar125homeAppsLogimonsRoute
   '/{-$locale}/(home)/apps/openworldcar': typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   '/{-$locale}/(home)/apps/pastryvital': typeof Char123LocaleChar125homeAppsPastryvitalRoute
@@ -167,6 +177,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/'
     | '/{-$locale}/apps/croissant-electron'
     | '/{-$locale}/apps/kim-these'
+    | '/{-$locale}/apps/llama-ts'
     | '/{-$locale}/apps/logimons'
     | '/{-$locale}/apps/openworldcar'
     | '/{-$locale}/apps/pastryvital'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/{-$locale}'
     | '/{-$locale}/apps/croissant-electron'
     | '/{-$locale}/apps/kim-these'
+    | '/{-$locale}/apps/llama-ts'
     | '/{-$locale}/apps/logimons'
     | '/{-$locale}/apps/openworldcar'
     | '/{-$locale}/apps/pastryvital'
@@ -198,6 +210,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/(home)/'
     | '/{-$locale}/(home)/apps/croissant-electron'
     | '/{-$locale}/(home)/apps/kim-these'
+    | '/{-$locale}/(home)/apps/llama-ts'
     | '/{-$locale}/(home)/apps/logimons'
     | '/{-$locale}/(home)/apps/openworldcar'
     | '/{-$locale}/(home)/apps/pastryvital'
@@ -283,6 +296,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125homeAppsKimTheseRouteImport
       parentRoute: typeof Char123LocaleChar125homeRouteRoute
     }
+    '/{-$locale}/(home)/apps/llama-ts': {
+      id: '/{-$locale}/(home)/apps/llama-ts'
+      path: '/apps/llama-ts'
+      fullPath: '/{-$locale}/apps/llama-ts'
+      preLoaderRoute: typeof Char123LocaleChar125homeAppsLlamaTsRouteImport
+      parentRoute: typeof Char123LocaleChar125homeRouteRoute
+    }
     '/{-$locale}/(home)/apps/logimons': {
       id: '/{-$locale}/(home)/apps/logimons'
       path: '/apps/logimons'
@@ -321,6 +341,7 @@ interface Char123LocaleChar125homeRouteRouteChildren {
   Char123LocaleChar125homeIndexRoute: typeof Char123LocaleChar125homeIndexRoute
   Char123LocaleChar125homeAppsCroissantElectronRoute: typeof Char123LocaleChar125homeAppsCroissantElectronRoute
   Char123LocaleChar125homeAppsKimTheseRoute: typeof Char123LocaleChar125homeAppsKimTheseRoute
+  Char123LocaleChar125homeAppsLlamaTsRoute: typeof Char123LocaleChar125homeAppsLlamaTsRoute
   Char123LocaleChar125homeAppsLogimonsRoute: typeof Char123LocaleChar125homeAppsLogimonsRoute
   Char123LocaleChar125homeAppsOpenworldcarRoute: typeof Char123LocaleChar125homeAppsOpenworldcarRoute
   Char123LocaleChar125homeAppsPastryvitalRoute: typeof Char123LocaleChar125homeAppsPastryvitalRoute
@@ -338,6 +359,8 @@ const Char123LocaleChar125homeRouteRouteChildren: Char123LocaleChar125homeRouteR
       Char123LocaleChar125homeAppsCroissantElectronRoute,
     Char123LocaleChar125homeAppsKimTheseRoute:
       Char123LocaleChar125homeAppsKimTheseRoute,
+    Char123LocaleChar125homeAppsLlamaTsRoute:
+      Char123LocaleChar125homeAppsLlamaTsRoute,
     Char123LocaleChar125homeAppsLogimonsRoute:
       Char123LocaleChar125homeAppsLogimonsRoute,
     Char123LocaleChar125homeAppsOpenworldcarRoute:

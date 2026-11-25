@@ -1,5 +1,6 @@
 import {
   AppWindow,
+  BrainCircuit,
   Building2,
   Car,
   GraduationCap,
@@ -76,6 +77,13 @@ export const apps: App[] = [
     tint: "oklch(0.62 0.13 195)",
     repo: "croissantsam/puerto",
     links: [{ kind: "repo", href: "https://github.com/croissantsam/puerto" }],
+  },
+  {
+    id: "llama-ts",
+    icon: BrainCircuit,
+    tint: "oklch(0.64 0.14 280)",
+    repo: "croissantsam/llama.ts",
+    links: [{ kind: "repo", href: "https://github.com/croissantsam/llama.ts" }],
   },
 ];
 

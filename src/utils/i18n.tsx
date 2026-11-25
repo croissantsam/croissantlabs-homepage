@@ -76,7 +76,7 @@ const dictionaries = {
       metaDescription:
         "CroissantLabs conçoit des apps et sites web pour des équipes ambitieuses. Découvrez la suite dans un tableau de bord vivant.",
       ogDescription: "Un studio, plusieurs produits. Entrez dans le dashboard de CroissantLabs.",
-      liveStatusPrefix: "6 projets & outils · mis à jour",
+      liveStatusPrefix: "7 projets & outils · mis à jour",
       titleStart: "Un studio produit qui conçoit",
       titleAccent: "des apps qu'on aime ouvrir.",
       intro:
@@ -86,7 +86,7 @@ const dictionaries = {
       stats: [
         {
           key: "products",
-          value: "6",
+          value: "7",
           label: "projets développés",
           color: "var(--terracotta)",
         },
@@ -154,11 +154,11 @@ const dictionaries = {
       metaTitle: "CroissantLabs — Apps",
       metaDescription: "Parcourez la suite produit de CroissantLabs en français.",
       eyebrow: "Catalogue produit",
-      title: "Six projets, une même exigence.",
+      title: "Sept projets, une même exigence.",
       intro:
         "Chaque produit développé au studio a sa page dédiée : ce qu'il fait, la stack utilisée et les liens pour aller plus loin. Voici la version condensée du portefeuille.",
       highlights: [
-        { key: "ship", value: "6", label: "projets développés en interne" },
+        { key: "ship", value: "7", label: "projets développés en interne" },
         { key: "platforms", value: "Multi", label: "Web, Desktop & natif" },
         { key: "craft", value: "100%", label: "design soigné & code propre" },
       ],
@@ -504,6 +504,46 @@ const dictionaries = {
           stack: ["Swift", "SwiftUI/AppKit", "lsof", "SMAppService", "macOS 12+"],
         },
       },
+      {
+        id: "llama-ts",
+        name: "llama.ts",
+        kind: "Moteur LLM · TypeScript",
+        tagline: "Moteur d'inférence LLM 100 % TypeScript, ciblant Node.js et ScriptC",
+        status: "beta",
+        details: {
+          intro: [
+            "llama.ts est un projet expérimental qui construit un moteur d'inférence LLM entièrement en TypeScript. Il charge des fichiers de modèle GGUF et génère du texte — sans C++, Rust, Go, Python ni bindings natifs.",
+            "La question centrale : jusqu'où le TypeScript compilé nativement peut-il aller pour bâtir un moteur d'inférence LLM ? Le moteur cible à la fois Node.js et ScriptC, avec un runtime abstrait qui isole l'exécution.",
+          ],
+          features: [
+            {
+              title: "100 % TypeScript",
+              body: "Aucun C++, Rust, Go, Python ni binding natif : tout le pipeline d'inférence est écrit en TypeScript.",
+            },
+            {
+              title: "Chargement GGUF",
+              body: "Lecture des fichiers de modèle GGUF (Qwen2.5-0.5B-Instruct recommandé pour démarrer).",
+            },
+            {
+              title: "Génération & streaming",
+              body: "Génération de texte avec température et max-tokens, plus un mode streaming token par token.",
+            },
+            {
+              title: "Kernels quantifiés",
+              body: "MatVecMul Q8_0 et Q4_0 mesurés à ~1,73× le FP32 sur un passage mono-token.",
+            },
+            {
+              title: "Architecture transformer",
+              body: "Attention, FFN SwiGLU, KV cache, RoPE, RMSNorm et softmax — blocs complets du transformer.",
+            },
+            {
+              title: "Runtime Node & ScriptC",
+              body: "Une abstraction runtime cible Node.js aujourd'hui et ScriptC demain, sans réécrire le moteur.",
+            },
+          ],
+          stack: ["TypeScript", "GGUF", "Node.js", "ScriptC", "Kernels quantifiés Q4/Q8"],
+        },
+      },
     ],
   },
   en: {
@@ -559,7 +599,7 @@ const dictionaries = {
       metaDescription:
         "CroissantLabs designs apps and websites for ambitious teams. Explore the product suite inside a lively dashboard.",
       ogDescription: "One studio, several products. Step into the CroissantLabs dashboard.",
-      liveStatusPrefix: "6 projects & tools · updated",
+      liveStatusPrefix: "7 projects & tools · updated",
       titleStart: "A product studio building",
       titleAccent: "apps people love opening.",
       intro:
@@ -569,7 +609,7 @@ const dictionaries = {
       stats: [
         {
           key: "products",
-          value: "6",
+          value: "7",
           label: "in-house projects",
           color: "var(--terracotta)",
         },
@@ -637,11 +677,11 @@ const dictionaries = {
       metaTitle: "CroissantLabs — Apps",
       metaDescription: "Browse the CroissantLabs product suite in English.",
       eyebrow: "Product catalog",
-      title: "Six projects, one standard.",
+      title: "Seven projects, one standard.",
       intro:
         "Every product built at the studio has its own page: what it does, the stack behind it, and links to learn more. Here is the compact view of the portfolio.",
       highlights: [
-        { key: "ship", value: "6", label: "in-house projects" },
+        { key: "ship", value: "7", label: "in-house projects" },
         { key: "platforms", value: "Multi", label: "Web, Desktop & native" },
         { key: "craft", value: "100%", label: "bespoke design & clean code" },
       ],
@@ -985,6 +1025,46 @@ const dictionaries = {
             },
           ],
           stack: ["Swift", "SwiftUI/AppKit", "lsof", "SMAppService", "macOS 12+"],
+        },
+      },
+      {
+        id: "llama-ts",
+        name: "llama.ts",
+        kind: "LLM engine · TypeScript",
+        tagline: "A 100% TypeScript LLM inference engine targeting Node.js and ScriptC",
+        status: "beta",
+        details: {
+          intro: [
+            "llama.ts is an experimental project to build an LLM inference engine entirely in TypeScript. It loads GGUF model files and generates text — no C++, Rust, Go, Python, or native bindings required.",
+            "The central question: how far can TypeScript compiled natively go for building an LLM inference engine? The engine targets both Node.js and ScriptC, with an abstracted runtime that isolates execution.",
+          ],
+          features: [
+            {
+              title: "100% TypeScript",
+              body: "No C++, Rust, Go, Python, or native bindings: the whole inference pipeline is written in TypeScript.",
+            },
+            {
+              title: "GGUF loading",
+              body: "Reads GGUF model files (Qwen2.5-0.5B-Instruct recommended as a first model).",
+            },
+            {
+              title: "Generation & streaming",
+              body: "Text generation with temperature and max-tokens, plus a token-by-token streaming mode.",
+            },
+            {
+              title: "Quantized kernels",
+              body: "Q8_0 and Q4_0 MatVecMul measured at ~1.73× FP32 on a single-token pass.",
+            },
+            {
+              title: "Transformer architecture",
+              body: "Attention, SwiGLU FFN, KV cache, RoPE, RMSNorm, and softmax — full transformer blocks.",
+            },
+            {
+              title: "Node & ScriptC runtime",
+              body: "A runtime abstraction targets Node.js today and ScriptC next, without rewriting the engine.",
+            },
+          ],
+          stack: ["TypeScript", "GGUF", "Node.js", "ScriptC", "Quantized Q4/Q8 kernels"],
         },
       },
     ],
